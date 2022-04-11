@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.ArrayList;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -7,6 +9,8 @@ package htw.berlin.prog2.ha1;
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
 public class Calculator {
+
+    ArrayList numList = new ArrayList<Double>();
 
     private String screen = "0";
 
@@ -60,7 +64,10 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
+        if (latestValue == 0){
+            latestValue = Double.parseDouble(screen);
+        }
+        else pressEqualsKey();
         latestOperation = operation;
     }
 
@@ -85,6 +92,8 @@ public class Calculator {
 
     }
 
+
+
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
@@ -104,7 +113,9 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
+
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+
     }
 
     /**
