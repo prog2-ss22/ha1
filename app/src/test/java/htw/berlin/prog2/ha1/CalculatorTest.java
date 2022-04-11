@@ -45,6 +45,36 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("error if divided by zero")
+    void testred1() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("second dot")
+    void testred2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+
+        String expected = "2.01";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display result after getting the square root of two")
     void testSquareRoot() {
         Calculator calc = new Calculator();
