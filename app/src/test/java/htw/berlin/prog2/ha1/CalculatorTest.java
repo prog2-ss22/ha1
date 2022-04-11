@@ -64,7 +64,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after dividing by 0 == Error")
+    @DisplayName("should display result after dividing by 0 (Error)")
 
     void testDividingBy0(){
         Calculator calc = new Calculator();
@@ -74,6 +74,24 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
+
+    @Test
+    @DisplayName("should display result after dividing by 1/x if x is 0 (Error) ")
+
+    void testNewTwo(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("1/x");
 
 
         String expected = "Error";
