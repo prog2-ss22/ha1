@@ -127,6 +127,7 @@ public class Calculator {
      */
     public void pressEqualsKey() {
         double result;
+        String error = "Error";
         switch (latestOperation) {
             case "+":
                 result = latestValue + Double.parseDouble(screen);
@@ -138,13 +139,26 @@ public class Calculator {
                 result = latestValue * Double.parseDouble(screen);
                 break;
             case "/":
-                result = latestValue / Double.parseDouble(screen);
-                break;
+
+                    result = latestValue / Double.parseDouble(screen);
+                    break;
+
+
+
+
+
             default:
                 throw new IllegalArgumentException();
         }
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+            screen = Double.toString(result);
+            if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+
+
+
     }
 }

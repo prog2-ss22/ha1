@@ -46,7 +46,7 @@ class CalculatorTest {
     // Funktionalität abdeckt, die bereits funktioniert und der daher direkt grün wird.
 
     @Test
-    @DisplayName("should display result of dividing ten by one hundred")
+    @DisplayName("should display result after dividing ten by one hundred")
 
     void testDividingByHundred(){
         Calculator calc = new Calculator();
@@ -62,6 +62,31 @@ class CalculatorTest {
 
 
     }
+
+    @Test
+    @DisplayName("should display result after dividing by 0 == Error")
+
+    void testDividingBy0(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
+
+
+
+
 
 
 }
