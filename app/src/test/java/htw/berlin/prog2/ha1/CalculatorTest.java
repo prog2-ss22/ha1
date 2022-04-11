@@ -94,5 +94,24 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //RED TEST
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers and pressing equals multiple times")
+    void testMultipleEquals() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "5000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
