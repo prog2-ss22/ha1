@@ -57,7 +57,7 @@ class CalculatorTest {
     }
 
     @Test //added (Task 2) DONE
-    @DisplayName("should display result after adding two positive multi-digit numbers, but used clear-key to change the the second summand")
+    @DisplayName("should display result after adding two positive multi-digit numbers, but used clear-key to change the second summand")
     void testClearScreen() {
         Calculator calc = new Calculator();
 
