@@ -76,7 +76,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test //added (Task 2) NOT FUNCTIONALLY
+
+    @Test //added (Task 2) NOT FUNCTIONALLY [neu!!! für 2.roten Test]
     @DisplayName("should display result after adding two negative multi-digit numbers")
     void testNegativeAddition() {
         Calculator calc = new Calculator();
