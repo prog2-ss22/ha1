@@ -41,5 +41,23 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    /* Teilaufgabe 1: GRÜNE TEST : Subtraktion   */
+    @Test
+    @DisplayName("should display  result after substracting of two numbers")
+    void testSubstraction() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "22";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+
 }
 
