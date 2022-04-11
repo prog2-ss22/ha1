@@ -151,13 +151,16 @@ public class Calculator {
                 throw new IllegalArgumentException();
         }
 
-
+        if( result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
+            screen = error;
+        }
+        else {
             screen = Double.toString(result);
-            if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
 
-
+        }
 
 
     }
