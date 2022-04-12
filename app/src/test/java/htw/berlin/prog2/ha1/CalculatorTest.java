@@ -70,5 +70,25 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Teilaufg. 2 - zweiter Test zu Fliesskommazahlen bzw. Rundungsfehler")
+    void testFloatingPointNumbers() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        assertEquals("22.88", calc.readScreen());
+    }
+
 }
 
