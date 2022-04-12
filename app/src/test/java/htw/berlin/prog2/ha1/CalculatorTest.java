@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Retro calculator")
 class CalculatorTest {
-
+//test commit 12.4.22
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
