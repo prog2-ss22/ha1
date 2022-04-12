@@ -81,12 +81,14 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        /*fix zu rote Test 2: Es soll eine if-Anweisung geschrieben werden, um das Ergebnis,
+        /*fix zu rote Test (Teilaufgabe 2): Es sollte eine if-Anweisung geschrieben werden, um das Ergebnis,
         das auf ".0" endet, in die eigentliche Zahl ohne die Nachkommazahlen umzuwandeln.
          */
         if (screen.endsWith(".0")) screen = screen.substring(0,screen.length() -2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        /* fix zu rote Test von Teilaufgabe 3 : Es sollte eine if-Anweisung geschrieben werden, um die Fehlermeldung,
+               die "Infinity" ist, in "Error" umzuwandeln. */
+        if (screen.equals("Infinity")) screen = "Error";
     }
 
     /**
@@ -131,5 +133,9 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length() -2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+         /* fix zu rote Test von Teilaufgabe 3 : Es sollte eine if-Anweisung geschrieben werden, um die Fehlermeldung,
+               die "Infinity" ist, in "Error" umzuwandeln. */
+        if (screen.equals("Infinity")) screen = "Error";
     }
+
 }

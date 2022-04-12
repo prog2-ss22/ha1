@@ -84,7 +84,16 @@ class CalculatorTest {
     String act = calc.readScreen();
     assertEquals(exp, act);
 }
-
+    @Test
+    @DisplayName("Should give Error if inverted by zero")
+    void TestInversionZero() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+      calc.pressUnaryOperationKey("1/x");
+      String exp = "Error";
+        String act = calc.readScreen();
+        assertEquals(exp, act);
+    }
 
 }
 
