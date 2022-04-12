@@ -69,6 +69,7 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
+        calc.pressEqualsKey();
 
         String expected = "Error";
         String actual = calc.readScreen();
@@ -78,7 +79,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display Error after trying to get the squareroot of a negative number")
-    void testNegativSquareRoot(){
+    void testNegativeSquareRoot(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
