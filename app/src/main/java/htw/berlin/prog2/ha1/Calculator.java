@@ -81,6 +81,10 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        /*fix zu rote Test 2: Es soll eine if-Anweisung geschrieben werden, um das Ergebnis,
+        das auf ".0" endet, in die eigentliche Zahl ohne die Nachkommazahlen umzuwandeln.
+         */
+        if (screen.endsWith(".0")) screen = screen.substring(0,screen.length() -2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -125,7 +129,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length() -2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
 }
