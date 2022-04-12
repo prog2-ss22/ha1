@@ -41,5 +41,24 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after multipling two numbers")
+    void testMultipling() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
