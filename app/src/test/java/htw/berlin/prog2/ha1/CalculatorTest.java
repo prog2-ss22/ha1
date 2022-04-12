@@ -41,5 +41,20 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("Test zu Teilaufg. 1 - nach drücken der 'CE'-Taste soll '0' angezeigt werden")
+    void testClearFunction() {
+        Calculator calculator = new Calculator();
+
+        calculator.pressDigitKey(8);
+        calculator.pressBinaryOperationKey("-");
+        calculator.pressDigitKey(1);
+        calculator.pressEqualsKey();
+        calculator.pressClearKey();
+
+        assertEquals("0" , calculator.readScreen());
+    }
+
 }
 
