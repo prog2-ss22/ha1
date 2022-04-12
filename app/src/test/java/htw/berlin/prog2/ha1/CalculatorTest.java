@@ -58,13 +58,28 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Should display Error after trying square root of negative number")
+    @DisplayName("Should display String Error after trying square root of negative number")
     void testNegativeSquareRoot(){
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
         calc.pressDigitKey(9);
         calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+
+    @Test
+    @DisplayName("Should display String Error after trying to divide a number by zero")
+    void testDivideByZero(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
 
         String expected = "Error";
         String actual = calc.readScreen();
