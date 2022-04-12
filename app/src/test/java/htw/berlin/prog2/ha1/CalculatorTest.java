@@ -94,6 +94,16 @@ class CalculatorTest {
         String act = calc.readScreen();
         assertEquals(exp, act);
     }
-
+@Test
+    @DisplayName("Should give Error after root a negative number")
+    void TestRootNegative(){
+    Calculator calc = new Calculator();
+    calc.pressDigitKey(1);
+    calc.pressNegativeKey();
+    calc.pressUnaryOperationKey("√");
+    String exp = "Error";
+    String act = calc.readScreen();
+    assertEquals(exp, act);
+}
 }
 
