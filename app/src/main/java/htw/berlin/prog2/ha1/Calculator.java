@@ -126,7 +126,16 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        // urspruengliche Zeile
+        //if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        // Teilaufg. 3 - mein Loesungsansatz zum 2. Test der Teilaufgabe 2 -> keine allgemeingültige Lösung
+        // inspiriert von https://www.delftstack.com/de/howto/java/how-to-round-a-double-to-two-decimal-places-in-java/
+        if(screen.contains(".")) {
+            Double useMathDotRoundMethod = Double.parseDouble(screen);
+            useMathDotRoundMethod = Math.round(useMathDotRoundMethod * 100) / 100.0;
+            screen = Double.toString(useMathDotRoundMethod);
+        }
 
         // Teilaufgabe 3 - Loesung zu 1. Test aus Teilaufgabe 2
         if(screen.equals("Infinity")) screen = "Error";
