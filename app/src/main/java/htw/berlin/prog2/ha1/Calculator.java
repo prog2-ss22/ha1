@@ -125,8 +125,15 @@ public class Calculator {
             case "/" -> latestValue / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+        if (latestOperation == "/" & Double.parseDouble(screen) == 0) {
+            if ((latestValue - Double.parseDouble(screen) == latestValue)) {
+                String error = "Error";
+                screen = error;
+            }
+        } else {
             screen = Double.toString(result);
             if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
             if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
     }
 }
