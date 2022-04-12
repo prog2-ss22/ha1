@@ -24,6 +24,7 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+
     }
 
     @Test
@@ -38,8 +39,27 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after multiply two positive multi-digit numbers")
+    void testPositiveMultiplication(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+
+        String expected = "729";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
