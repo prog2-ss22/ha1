@@ -41,5 +41,69 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    /* Teilaufgabe 1: GRÜNE TEST : Subtraktion   */
+    @Test
+    @DisplayName("should display  result after substracting of two numbers")
+    void testSubstraction() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        String expected = "22";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("")
+    void testPercentOperation() {
+        Calculator calc = new Calculator();
+       calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(0);
+       calc.pressUnaryOperationKey("%");
+
+       String expected = "1";
+       String actual = calc.readScreen();
+       assertEquals(expected, actual);
+
+    }
+
+@Test
+    @DisplayName("Should give Error if divided by zero")
+    void TestDivisionZero() {
+    Calculator calc = new Calculator();
+    calc.pressDigitKey(1);
+    calc.pressBinaryOperationKey("/");
+    calc.pressDigitKey(0);
+    calc.pressEqualsKey();
+    String exp = "Error";
+    String act = calc.readScreen();
+    assertEquals(exp, act);
+}
+    @Test
+    @DisplayName("Should give Error if inverted by zero")
+    void TestInversionZero() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(0);
+      calc.pressUnaryOperationKey("1/x");
+      String exp = "Error";
+        String act = calc.readScreen();
+        assertEquals(exp, act);
+    }
+@Test
+    @DisplayName("Should give Error after root a negative number")
+    void TestRootNegative(){
+    Calculator calc = new Calculator();
+    calc.pressDigitKey(1);
+    calc.pressNegativeKey();
+    calc.pressUnaryOperationKey("√");
+    String exp = "Error";
+    String act = calc.readScreen();
+    assertEquals(exp, act);
+}
 }
 
