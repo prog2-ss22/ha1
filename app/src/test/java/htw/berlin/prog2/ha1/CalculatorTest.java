@@ -56,5 +56,19 @@ class CalculatorTest {
         assertEquals("0" , calculator.readScreen());
     }
 
+    @Test
+    @DisplayName("Test zu Teilaufg. 2 - Division durch null fuehrt zu Fehlermeldung ")
+    void testDivideByNull() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(7);
+        calculator.pressBinaryOperationKey("/");
+        calculator.pressDigitKey(0);
+        calculator.pressEqualsKey();
+
+        var expected = "Error";
+        var actual = calculator.readScreen();
+        assertEquals(expected, actual);
+    }
+
 }
 
