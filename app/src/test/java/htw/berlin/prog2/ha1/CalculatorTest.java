@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("Retro calculator")
+@DisplayName("1 Retro calculator")
 class CalculatorTest {
 
     @Test
