@@ -88,7 +88,8 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
         /* fix zu rote Test von Teilaufgabe 3 : Es sollte eine if-Anweisung geschrieben werden, um die Fehlermeldung,
                die "Infinity" ist, in "Error" umzuwandeln. */
-        if (screen.equals("Infinity")) screen = "Error";
+        // screen.equals("NaN") ergänzt --> fix Test 4
+        if (screen.equals("Infinity") ||screen.equals("NaN") ) screen = "Error";
     }
 
     /**
