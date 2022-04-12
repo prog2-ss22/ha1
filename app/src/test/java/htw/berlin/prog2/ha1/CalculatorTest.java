@@ -43,24 +43,27 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen!
-
     @Test
-    @DisplayName("should display result after subract  three minus minus Six")
-    void testMinusMinusMinus() {
+    @DisplayName("should display result after subtract two positive multi-digit numbers")
+    void testsubtraction() {
         Calculator calc = new Calculator();
 
-
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(3);
-        calc.pressBinaryOperationKey("-");
-        calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(6);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
 
-
-        String expected = "-9";
+        String expected = "10";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
+
+
+
+
 }
 
