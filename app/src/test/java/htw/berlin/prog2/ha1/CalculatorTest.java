@@ -45,8 +45,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("error if divided by zero")
-    void testred1() {
+    @DisplayName("Should display 'Error' if attempt to divide by zero")
+    void testDivideByZero() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
@@ -59,8 +59,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("second dot")
-    void testred2() {
+    @DisplayName("Should not add a second '.' if the string already contains one '.'")
+    void testNoSecondDot() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
