@@ -74,14 +74,27 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        if (latestOperation.equals("√")){
+            if (screen.startsWith("-")){
+                screen = "Error";
+            } else {
+               var result2 = Math.sqrt(Double.parseDouble(screen));
+                screen = Double.toString(result2);
+                if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+            }
+
+        } else {
+            var result = switch(operation) {
+                //  case "√" -> Math.sqrt(Double.parseDouble(screen));
+                case "%" -> Double.parseDouble(screen) / 100;
+                case "1/x" -> 1 / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            screen = Double.toString(result);
+            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
+
 
     }
 
@@ -113,19 +126,25 @@ public class Calculator {
      * Wurde zuvor eine binäre Operationstaste gedrückt und zwei Operanden eingegeben, wird das
      * Ergebnis der Operation angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
-     * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
+     * Operation (ggf. inklusive letztem Operand) er
+     * neut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+       if (latestOperation.equals("/") && screen.equals("0")){
+           screen = "Error";
+        } else {
+           var result = switch(latestOperation) {
+               case "+" -> latestValue + Double.parseDouble(screen);
+               case "-" -> latestValue - Double.parseDouble(screen);
+               case "x" -> latestValue * Double.parseDouble(screen);
+               case "/" -> latestValue / Double.parseDouble(screen);
+               default -> throw new IllegalArgumentException();
+           };
+           screen = Double.toString(result);
+           if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+           if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+       }
+
     }
 }
