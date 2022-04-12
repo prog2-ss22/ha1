@@ -78,21 +78,5 @@ class CalculatorTest {
         assertEquals(expected, actual.substring(0, 5));
     }
 
-    @Test
-    @DisplayName("should display an error after dividing through zero")
-    void testDividingByZero() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(0);
-        calc.pressEqualsKey();
-
-        String expected = "error";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
 }
 

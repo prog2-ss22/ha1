@@ -128,10 +128,11 @@ public class Calculator {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "/" -> Double.parseDouble(screen) != 0 ? (latestValue / Double.parseDouble(screen)) : Double.NaN;
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+
+        screen = Double.isNaN(result) ? "error" : Double.toString(result);
         passDecimal = false;
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
