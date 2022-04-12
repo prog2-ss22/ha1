@@ -43,5 +43,24 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after subract  three minus minus Six")
+    void testMinusMinusMinus() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("-");
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(6);
+
+
+        String expected = "-9";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
