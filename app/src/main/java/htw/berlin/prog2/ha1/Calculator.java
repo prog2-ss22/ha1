@@ -122,6 +122,8 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "" -> Double.parseDouble(screen);  //Hinzufügen case mit keiner weiteren Operation = leerer String
+            // keins Latest value, weil nur ein Digit also kein vorhanden
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
