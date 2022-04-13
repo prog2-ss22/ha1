@@ -76,14 +76,16 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should change the input into percent")
+    @DisplayName("using the memory function")
     void testPercentKey() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
-        calc.pressBinaryOperationKey("%");
+        calc.pressMpKey();
+        calc.pressClearKey();
+        calc.pressMRKey();
 
-        String expected = "0.09";
+        String expected = "9";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
