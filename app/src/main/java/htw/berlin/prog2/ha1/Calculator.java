@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private String memory;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -133,4 +135,19 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
+    /**
+     * Speichert den Wert, der auf dem Screen angezeigt wird, sodass er später aufgerufen werden kann.
+     */
+    public void pressMpKey() {
+        memory = readScreen();
+    }
+
+    /**
+     * Ruft den gespeicherten Wert aus der Methode pressMpKey() auf und zeigt ihn auf dem Screen an.
+     */
+    public void pressMRKey() {
+        screen = memory;
+    }
+
 }
