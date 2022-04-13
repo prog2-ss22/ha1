@@ -40,6 +40,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //TODO hier weitere Tests erstellen
+
     @Test
     @DisplayName("should display result after multiplying two positive multi-digit numbers")
     void testPositiveMultiplication() {
@@ -73,6 +75,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should change the input into percent")
+    void testPercentKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("%");
+
+        String expected = "0.09";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
