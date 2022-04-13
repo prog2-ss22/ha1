@@ -92,6 +92,21 @@ class CalculatorTest {
      assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
      }
 
+    @Test
+    @DisplayName("should show ERROR on screen")
+    void testNegativeOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
+        String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+        assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+    }
+
 
 
 
