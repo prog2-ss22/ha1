@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private String memory;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -71,6 +73,7 @@ public class Calculator {
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
+
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
@@ -80,6 +83,7 @@ public class Calculator {
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
+
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
@@ -92,8 +96,11 @@ public class Calculator {
      * Trennzeichen angegeben und daher als Dezimalziffern interpretiert.
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
+
+    // benutzte Quelle: https://www.delftstack.com/de/howto/java/how-to-check-if-a-string-contains-character-in-java/
+
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+            if (readScreen().contains(".") == false) screen = screen + ".";
     }
 
     /**
@@ -128,4 +135,19 @@ public class Calculator {
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
+    /**
+     * Speichert den Wert, der auf dem Screen angezeigt wird, sodass er später aufgerufen werden kann.
+     */
+    public void pressMpKey() {
+        memory = readScreen();
+    }
+
+    /**
+     * Ruft den gespeicherten Wert aus der Methode pressMpKey() auf und zeigt ihn auf dem Screen an.
+     */
+    public void pressMRKey() {
+        screen = memory;
+    }
+
 }
