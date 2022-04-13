@@ -59,5 +59,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testDivisionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        
+        calc.pressEqualsKey();
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
