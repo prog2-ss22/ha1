@@ -41,5 +41,74 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    /**
+     * PressDotKey Test
+     * getestet, ob Dezimalzahlen im Taschenrechner
+     * eingegeben werden können
+     * Testergebnis ist grün, sprich expected und actual stimmen überein
+     */
+
+
+    @Test
+    @DisplayName("should display decimal number")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(4);
+
+        String expected = "2.4";
+        String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+        assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+    }
+    @Test
+    @DisplayName("should display number with opposite sign")
+    void testNegativeKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+
+        String expected = "-2";
+        String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+        assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+    }
+
+    @Test
+     @DisplayName("should do nothing")
+     void testEquals() {
+     Calculator calc = new Calculator();
+
+     calc.pressDigitKey(2);
+     calc.pressEqualsKey();
+
+     String expected = "2";
+     String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+     assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+     }
+
+    @Test
+    @DisplayName("should show ERROR on screen")
+    void testNegativeOperation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
+        String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+        assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+    }
+
+
+
+
 }
 
