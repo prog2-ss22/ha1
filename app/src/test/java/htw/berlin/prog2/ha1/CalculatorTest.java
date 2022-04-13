@@ -41,7 +41,7 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
-    
+
     /**
      * PressDotKey Test
      * getestet, ob Dezimalzahlen im Taschenrechner
@@ -77,6 +77,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
     }
+
+    @Test
+     @DisplayName("should do nothing")
+     void testEquals() {
+     Calculator calc = new Calculator();
+
+     calc.pressDigitKey(2);
+     calc.pressEqualsKey();
+
+     String expected = "2";
+     String actual = calc.readScreen(); //angezeigt was im Taschenrechner steht
+
+     assertEquals(expected, actual);   //Überprüft, ob expected und actual übereinstimmen
+     }
+
+
 
 
 }
