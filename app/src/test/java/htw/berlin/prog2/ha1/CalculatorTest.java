@@ -49,7 +49,7 @@ class CalculatorTest {
     */
 
     /** testNegativeAddition
-     *  this test tests, whether the calculator calculate a subtraction correctly
+     *  This test tests, whether the calculator calculate a subtraction correctly.
      *
      *  result: Check
      */
@@ -77,22 +77,17 @@ class CalculatorTest {
      */
 
     /** (1/2) testOneTimeClearAddition
-     *  this test tests, whether the pressClearKey()-method works correctly as described in the JavaDocs
+     *  This test tests, whether the pressClearKey()-method works correctly as described in the JavaDocs.
      *
-     *  Szenario
+     *  Scenario:   5 - (clear the "-") + 3 =
+     *  expected:   5 + 3 = [8]
+     *  actual:     3 (removes all and set the screen to 0)
+     *
+     *  result:     org.opentest4j.AssertionFailedError: expected: <8> but was: <3>
      */
     @Test
     @DisplayName("should display a addition after one-time-clear-operation")
     void testOneTimeClearAddition() {
-        /**
-         *      pressClearKey JavaDoc expected:
-         *      Einmaliges Drücken der Taste löscht die zuvor eingegebenen Ziffern auf dem Bildschirm
-         *      * so dass "0" angezeigt wird, jedoch ohne zuvor zwischengespeicherte Werte zu löschen.
-         *
-         *      result: org.opentest4j.AssertionFailedError: expected: <8> but was: <3>
-         */
-
-
         Calculator calculator = new Calculator();
 
         calculator.pressDigitKey(5);
@@ -108,15 +103,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    /** (2/2) testOneTimeClearAddition
+     *  This test tests, how the calculator works with duplicated dot-inputs
+     *  (Online-Calculator works like this: 5.5.5 => 5.55)
+     *
+     *  Scenario:   5 . 5 . (should be removed) 5 + 0 5 5  =
+     *  expected:   5.55 + 0.55 = 6.1
+     *  actual:     5.5.5 + 0.55 = parsingException => invalid string-double
+     *
+     *  result: at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1914) ...
+     */
     @Test
     @DisplayName("should convert a number-dot-number-dot-number to a double")
     void testNumberDotNumberDotNumber() {
-        /**
-         *      www.online-calculator.com expected:
-         *      5.5.5 => 5.55
-         *
-         *      result: at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1914)
-         */
         Calculator calculator = new Calculator();
 
         calculator.pressDigitKey(5);
@@ -148,7 +147,7 @@ class CalculatorTest {
      *      dann erweitern Sie bitte auch das JavaDoc entsprechend.
      * */
 
-    // Siehe Calculator:
+    // see in the Calculator:
 
     /**   1)
      *     public void pressClearKey() {
