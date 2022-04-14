@@ -45,9 +45,11 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        // why: pressBinaryOperationKey => parsed the screen to a double => you need the last value
+        screen = String.valueOf(latestValue);
+        //screen = "0";
+        //latestOperation = "";
+        //latestValue = 0.0;
     }
 
     /**
@@ -93,7 +95,8 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        //if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.contains(".")) screen = screen + ".";
     }
 
     /**
