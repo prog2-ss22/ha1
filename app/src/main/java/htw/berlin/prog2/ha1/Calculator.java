@@ -73,6 +73,7 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
+        String error = "Error";
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         double result;
@@ -89,8 +90,17 @@ public class Calculator {
             default:
                 throw new IllegalArgumentException();
         }
-        screen = Double.toString(result);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        if( result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
+            screen = error;
+        }
+
+        else {
+            screen = Double.toString(result);
+            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
+
+
 
     }
 
