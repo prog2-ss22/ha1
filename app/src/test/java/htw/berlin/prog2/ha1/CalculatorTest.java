@@ -72,11 +72,13 @@ class CalculatorTest {
         
         calc.pressEqualsKey();
 
-        String expected = "error";
+        String expected = "Error! Man kann keine Zahl durch Null teilen";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
 
     }
+
+    
 }
 

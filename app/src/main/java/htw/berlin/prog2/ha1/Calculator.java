@@ -21,6 +21,18 @@ public class Calculator {
         return screen;
     }
 
+    public static void main(String[] args){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        
+        calc.pressBinaryOperationKey("/");
+        
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        System.out.println(calc.readScreen());
+    }
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
@@ -127,5 +139,6 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen == "Infinity") screen = "Error! Man kann keine Zahl durch Null teilen";
     }
 }
