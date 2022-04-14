@@ -78,7 +78,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display an error")
+    @DisplayName("should display the result of adding two postive numbers")
     void testMultipleDots(){
         Calculator calc = new Calculator();
 
@@ -88,9 +88,11 @@ class CalculatorTest {
         calc.pressDotKey();
         calc.pressDigitKey(1);
 
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-        String expected = "Error";
+        String expected = "7.31";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
