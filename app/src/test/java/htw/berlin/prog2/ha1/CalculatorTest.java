@@ -40,13 +40,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    // my Solutions
 
     /** A1)
     *       Schreiben Sie einen neuen zusätzlichen Test,
     *       der eine bisher nicht getestete Funktionalität abdeckt,
     *       die bereits funktioniert und der daher direkt grün wird.
-    * */
+    */
+
+    /** testNegativeAddition
+     *  this test tests, whether the calculator calculate a subtraction correctly
+     *
+     *  result: Check
+     */
     @Test
     @DisplayName("should display a result after subtraction")
     void testNegativeAddition() {
@@ -63,12 +69,18 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    /* A2)
+    /** A2)
      *      Schreiben Sie zwei weitere zusätzliche Tests,
      *      die zwei unterschiedliche Fehlerkategorien aufdecken
      *      (d.h. deren Fehlerursachen in unterschiedlichen Methoden liegen)
      *      und somit fehlschlagen.
-     * */
+     */
+
+    /** (1/2) testOneTimeClearAddition
+     *  this test tests, whether the pressClearKey()-method works correctly as described in the JavaDocs
+     *
+     *  Szenario
+     */
     @Test
     @DisplayName("should display a addition after one-time-clear-operation")
     void testOneTimeClearAddition() {
