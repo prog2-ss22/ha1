@@ -2,7 +2,8 @@ package htw.berlin.prog2.ha1;
 
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
- * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
+ * https://www.online-calculator.com/ aufgerufen werden kann
+ * (ohne die Memory-Funktionen)
  * und dessen Bildschirm bis zu zehn Ziffern plus einem Dezimaltrennzeichen darstellen kann.
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
@@ -72,16 +73,34 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
+        String error = "Error";
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        double result;
+        switch (operation) {
+            case "√":
+                result = Math.sqrt(Double.parseDouble(screen));
+                break;
+            case "%":
+                result = Double.parseDouble(screen) / 100;
+                break;
+            case "1/x":
+                result = 1 / Double.parseDouble(screen);
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        if( result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
+            screen = error;
+        }
+
+        else {
+            screen = Double.toString(result);
+            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
+
+
 
     }
 
@@ -117,15 +136,42 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        double result;
+        String error = "Error";
+        switch (latestOperation) {
+            case "+":
+                result = latestValue + Double.parseDouble(screen);
+                break;
+            case "-":
+                result = latestValue - Double.parseDouble(screen);
+                break;
+            case "x":
+                result = latestValue * Double.parseDouble(screen);
+                break;
+            case "/":
+
+                    result = latestValue / Double.parseDouble(screen);
+                    break;
+
+
+
+
+
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        if( result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
+            screen = error;
+        }
+        else {
+            screen = Double.toString(result);
+            if (screen.endsWith(".0")) screen = screen.substring(0, screen.length() - 2);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+        }
+
+
     }
 }
