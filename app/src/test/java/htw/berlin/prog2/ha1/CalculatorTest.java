@@ -40,9 +40,11 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    // my Solutions
+    /** My Solutions
+     *
+     */
 
-    /** A1)
+    /** T1)
     *       Schreiben Sie einen neuen zusätzlichen Test,
     *       der eine bisher nicht getestete Funktionalität abdeckt,
     *       die bereits funktioniert und der daher direkt grün wird.
@@ -69,7 +71,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    /** A2)
+    /** T2)
      *      Schreiben Sie zwei weitere zusätzliche Tests,
      *      die zwei unterschiedliche Fehlerkategorien aufdecken
      *      (d.h. deren Fehlerursachen in unterschiedlichen Methoden liegen)
@@ -137,7 +139,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    /** A3)
+    /** T3)
      *      Schreiben Sie zwei Bugfixes
      *      (also Änderungen der Implementierungsklasse Calculator),
      *      so dass die zwei zuvor hinzugefügten Tests erfolgreich durchlaufen.
@@ -150,8 +152,11 @@ class CalculatorTest {
     // see in the Calculator:
 
     /**   1)
+     *      why: pressBinaryOperationKey =>
+     *              parsed the screen to a double =>
+     *                  you need the last value
+     *
      *     public void pressClearKey() {
-     *         // why: pressBinaryOperationKey => parsed the screen to a double => you need the last value
      *         screen = String.valueOf(latestValue);
      *         // screen = "0";
      *         // latestOperation = "";
@@ -160,6 +165,10 @@ class CalculatorTest {
      */
 
     /**    2)
+     *      why: just catched the last char
+     *              but when the user types in two dots, seperated with a nummeric value, the calculator goes down
+     *              5.5.5 can't be converted to a double (or a other numeric-type)
+     *
      *     public void pressDotKey() {
      *         //if(!screen.endsWith(".")) screen = screen + ".";
      *         if(!screen.contains(".")) screen = screen + ".";
