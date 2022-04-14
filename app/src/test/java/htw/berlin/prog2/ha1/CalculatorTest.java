@@ -81,7 +81,7 @@ class CalculatorTest {
     /** (1/2) testOneTimeClearAddition
      *  This test tests, whether the pressClearKey()-method works correctly as described in the JavaDocs.
      *
-     *  Scenario:   5 - (clear the "-") + 3 =
+     *  Scenario:   5 + 5 (clear the "5") + 3 =
      *  expected:   5 + 3 = [8]
      *  actual:     3 (removes all and set the screen to 0)
      *
@@ -93,13 +93,44 @@ class CalculatorTest {
         Calculator calculator = new Calculator();
 
         calculator.pressDigitKey(5);
-        calculator.pressBinaryOperationKey("-");
-        calculator.pressClearKey();
         calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(5);
+        calculator.pressClearKey();
         calculator.pressDigitKey(3);
+
         calculator.pressEqualsKey();
 
         String expected = "8";
+        String actual = calculator.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    /** (1.5/2) testTwoTimeClearAddition
+     *  This test tests, whether the pressClearKey()-method works correctly as described in the JavaDocs. Part 2.
+     *
+     *  Scenario:   5 + 5 (clear all) 1 5 + 3 =
+     *  expected:   15 + 3 = [18]
+     */
+    @Test
+    @DisplayName("should display a addition after two-time-clear-operation")
+    void testTwoTimeClearAddition() {
+        Calculator calculator = new Calculator();
+
+        calculator.pressDigitKey(5);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(5);
+        calculator.pressClearKey();
+        calculator.pressClearKey();
+
+        calculator.pressDigitKey(1);
+        calculator.pressDigitKey(5);
+        calculator.pressBinaryOperationKey("+");
+        calculator.pressDigitKey(3);
+
+        calculator.pressEqualsKey();
+
+        String expected = "18";
         String actual = calculator.readScreen();
 
         assertEquals(expected, actual);
@@ -154,13 +185,20 @@ class CalculatorTest {
     /**   1)
      *      why: pressBinaryOperationKey =>
      *              parsed the screen to a double =>
-     *                  you need the last value
+     *                  - in this case the screen will be 0
+     *                  - you need set the screen to the last value and do nothing more
+     *                      (at one-time-click, when two-time-click, you need to reset everything like before!
      *
      *     public void pressClearKey() {
-     *         screen = String.valueOf(latestValue);
-     *         // screen = "0";
-     *         // latestOperation = "";
-     *         // latestValue = 0.0;
+     *          if(this.isOneTimeCleared) {
+     *               removeAllOperations();
+     *               return;
+     *          }
+     *           screen = "0";
+     *           isOneTimeCleard = true;
+     *          //screen = "0";
+     *          //latestOperation = "";
+     *          //latestValue = 0.0;
      *     }
      */
 

@@ -9,10 +9,9 @@ package htw.berlin.prog2.ha1;
 public class Calculator {
 
     private String screen = "0";
-
     private double latestValue;
-
     private String latestOperation = "";
+    private boolean isOneTimeCleared = false;
 
     /**
      * @return den aktuellen Bildschirminhalt als String
@@ -30,6 +29,7 @@ public class Calculator {
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
+        isOneTimeCleared = false;
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
@@ -46,10 +46,22 @@ public class Calculator {
      */
     public void pressClearKey() {
         // why: pressBinaryOperationKey => parsed the screen to a double => you need the last value
-        screen = String.valueOf(latestValue);
+        if(this.isOneTimeCleared) {
+            this.removeAllOperations();
+            return;
+        }
+        screen = "0";
+        isOneTimeCleared = true;
         //screen = "0";
         //latestOperation = "";
         //latestValue = 0.0;
+    }
+
+    private void removeAllOperations() {
+        screen = "0";
+        latestOperation = "";
+        latestValue = 0.0;
+        isOneTimeCleared = false;
     }
 
     /**
