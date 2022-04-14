@@ -79,11 +79,16 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display an error")
-    void testSquareRootofZero(){
+    void testMultipleDots(){
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("√");
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+
+        calc.pressEqualsKey();
 
         String expected = "Error";
         String actual = calc.readScreen();
