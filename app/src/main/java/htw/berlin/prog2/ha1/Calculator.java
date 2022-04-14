@@ -11,6 +11,10 @@ import java.util.ArrayList;
 public class Calculator {
 
     ArrayList numList = new ArrayList<Double>();
+    ArrayList operatorList = new ArrayList<String>();
+
+    String currentOperator;
+
 
     private String screen = "0";
 
@@ -36,6 +40,7 @@ public class Calculator {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("-0") || screen.equals("-")) screen = "-";
 
         screen = screen + digit;
     }
@@ -133,6 +138,7 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "" -> latestValue = Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);

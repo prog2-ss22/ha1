@@ -44,7 +44,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after subtracting one number from another with the first number > second number")
-    void positiveSubtraction(){
+    void testPositiveSubtraction(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(9);
@@ -61,18 +61,18 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after multiplying two digit numbers with usage of negative Key Button")
-    void positiveMultiplication(){
+    @DisplayName("should display result after multiplying two digit numbers with usage of negative Key Button in front of the first number")
+    void testNegativeKeyFirstMultiplication(){
         Calculator calc = new Calculator();
-
         calc.pressNegativeKey();
         calc.pressDigitKey(2);
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(6);
+        calc.pressDigitKey(2);
+
         calc.pressEqualsKey();
 
-        String expected = "-132";
+        String expected = "-44";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -90,6 +90,37 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should displresult after multiplying two digit numbers with usage of negative Key Button in front of the first number")
+    void testNegativeKey(){
+        Calculator calc = new Calculator();
+        calc.pressNegativeKey();
+        //calc.pressDigitKey(2);
+       // calc.pressBinaryOperationKey("+");
+       // calc.pressDigitKey(0);
+
+        calc.pressEqualsKey();
+
+        String expected = "-2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display the typed in number as result when not using any Operators")
+    void testEqualsWithoutOperator(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+
+        calc.pressEqualsKey();
+
+        String expected = "9";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
