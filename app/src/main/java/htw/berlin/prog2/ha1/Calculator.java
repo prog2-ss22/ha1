@@ -75,12 +75,13 @@ public class Calculator {
         operatorList.add(operation);
 
         numList.add(Double.parseDouble(screen));
+        latestValue = Double.parseDouble(screen);
+        /*if (latestValue == 0){
 
-        if (latestValue == 0){
-            latestValue = Double.parseDouble(screen);
+
         }
 
-        else pressEqualsKey();
+        else pressEqualsKey();*/
 
     }
 
@@ -131,8 +132,8 @@ public class Calculator {
     }
 
     public void calc(){
-        double num1 = 0;
-        double num2 = 0;
+        double num1;
+        double num2;
 
         while(numList.size() > 1) {
             num1 = (double) numList.get(0);
@@ -147,9 +148,11 @@ public class Calculator {
                 case "" -> latestValue = Double.parseDouble(screen);
                 default -> throw new IllegalArgumentException();
             };
+            screen = String.valueOf(latestValue);
 
             numList.set(0, latestValue);
             numList.remove(1);
+            operatorList.remove(0);
         }
     }
     /**
@@ -171,12 +174,13 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         */
+        numList.add(Double.parseDouble(screen));
         calc();
 
         screen = Double.toString(latestValue);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-        operatorList.removeAll(operatorList);
-        numList.removeAll(numList);
+        //operatorList.removeAll(operatorList);
+        //numList.removeAll(numList);
     }
 }
