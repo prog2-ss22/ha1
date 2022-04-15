@@ -44,7 +44,7 @@ class CalculatorTest {
     //Teilaufgabe 1
     @Test
     @DisplayName("should display result after getting the square root of two")
-    void testNegativeAddition() {
+    void testNegativeOperation() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(8);
