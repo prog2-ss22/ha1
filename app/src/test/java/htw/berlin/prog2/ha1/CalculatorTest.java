@@ -61,7 +61,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after adding two positive multi-digit numbers")
+    @DisplayName("should display error after dividing a number by zero")
     void testDivisionByZero() {
         Calculator calc = new Calculator();
 
@@ -84,10 +84,10 @@ class CalculatorTest {
     void testNegativeSquare() {
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey();
+        //calc.pressNegativeKey();
         calc.pressDigitKey(2);
-        
-        calc.pressBinaryOperationKey("√");
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
         //calc.pressDigitKey(0);
         
         //calc.pressEqualsKey();

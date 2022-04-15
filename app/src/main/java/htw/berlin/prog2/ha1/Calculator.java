@@ -24,12 +24,11 @@ public class Calculator {
     public static void main(String[] args){
         Calculator calc = new Calculator();
 
+        
         calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
         
-        calc.pressBinaryOperationKey("/");
-        
-        calc.pressDigitKey(0);
-        calc.pressEqualsKey();
 
         System.out.println(calc.readScreen());
     }
@@ -94,6 +93,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if((latestValue < 0) && operation.equals("√")) screen = "Error!";
 
     }
 
