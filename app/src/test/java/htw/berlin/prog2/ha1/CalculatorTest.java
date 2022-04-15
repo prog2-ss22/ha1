@@ -60,24 +60,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    @DisplayName("should display 0 after hitting clear 2 times ")
-    void testClearingCalculater() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("/");
-        calc.pressClearKey();
-        calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
-        calc.pressEqualsKey();
-
-        String expected = "2";
-        String actual = calc.readScreen();
-        assertEquals(expected, actual);
-    }
 
     @Test
     @DisplayName("should display Error after trying to divide by 0 ")
@@ -95,6 +77,21 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display only one dot even after hitting more than once")
+    void testDoubleDotCalculater() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+
+        String expected = "3.12";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 
 
 }
