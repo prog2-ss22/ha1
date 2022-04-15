@@ -41,5 +41,23 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
-}
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testNegativeAddition() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "22";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+}
