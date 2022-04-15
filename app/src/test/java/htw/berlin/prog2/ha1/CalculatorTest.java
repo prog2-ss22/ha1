@@ -96,11 +96,11 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should displresult after multiplying two digit numbers with usage of negative Key Button in front of the first number")
+    @DisplayName("should display result after using negative Key Button in front of the first number")
     void testNegativeKey(){
         Calculator calc = new Calculator();
         calc.pressNegativeKey();
-        //calc.pressDigitKey(2);
+        calc.pressDigitKey(2);
        // calc.pressBinaryOperationKey("+");
        // calc.pressDigitKey(0);
 

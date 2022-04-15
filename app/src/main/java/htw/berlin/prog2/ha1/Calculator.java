@@ -39,8 +39,9 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-        if(screen.equals("-0") || screen.equals("-")) screen = "-";
+        if(screen.equals("-0")) screen = "-";
+        else if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+
 
         screen = screen + digit;
     }
@@ -127,7 +128,13 @@ public class Calculator {
      */
     public void pressNegativeKey() {
 
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        //screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if(screen.equals(screen.startsWith("-"))){
+            screen.substring(1);
+        }
+        else{
+           screen = "-" + screen;
+        }
 
     }
 
@@ -176,13 +183,15 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         */
+        //letzte Zahl auf dem Screen hinzufügen
         numList.add(Double.parseDouble(screen));
         calc();
 
         screen = Double.toString(latestValue);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-        //operatorList.removeAll(operatorList);
-        //numList.removeAll(numList);
+        //Listen frei machen
+        operatorList.removeAll(operatorList);
+        numList.removeAll(numList);
     }
 }
