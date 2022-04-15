@@ -75,5 +75,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(7);
+
+        calc.pressEqualsKey();
+
+        String expected = "3,82352941";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
