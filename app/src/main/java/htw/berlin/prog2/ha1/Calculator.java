@@ -82,8 +82,16 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
 
         };
+        if (latestValue == 1 || latestValue == 0  & latestOperation == "√") {
+            if (latestValue == 1) {
+                screen = "1";
+            } else {
+                screen = "0";
+            }
+        } else {
             screen = Double.toString(result);
             if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
     }
 
     /**
