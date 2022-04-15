@@ -135,6 +135,8 @@ public class Calculator {
         double num1;
         double num2;
 
+        if(numList.size()==1){ latestValue = (double) numList.get(0);}
+
         while(numList.size() > 1) {
             num1 = (double) numList.get(0);
             num2 = (double) numList.get(1);
