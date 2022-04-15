@@ -1,5 +1,7 @@
 package htw.berlin.prog2.ha1;
 
+import java.util.ArrayList;
+
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
@@ -7,6 +9,12 @@ package htw.berlin.prog2.ha1;
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
 public class Calculator {
+
+    ArrayList numList = new ArrayList<Double>();
+    ArrayList operatorList = new ArrayList<String>();
+
+    String currentOperator;
+
 
     private String screen = "0";
 
@@ -31,7 +39,9 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("-0")) screen = "-";
+        else if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+
 
         screen = screen + digit;
     }
@@ -48,6 +58,9 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+
+        operatorList.removeAll(operatorList);
+        numList.removeAll(numList);
     }
 
     /**
@@ -60,8 +73,17 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        operatorList.add(operation);
+
+        numList.add(Double.parseDouble(screen));
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        /*if (latestValue == 0){
+
+
+        }
+
+        else pressEqualsKey();*/
+
     }
 
     /**
@@ -82,8 +104,9 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
+
+
 
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
@@ -104,9 +127,43 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+
+        //screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if(screen.equals(screen.startsWith("-"))){
+            screen.substring(1);
+        }
+        else{
+           screen = "-" + screen;
+        }
+
     }
 
+    public void calc(){
+        double num1;
+        double num2;
+
+        if(numList.size()==1){ latestValue = (double) numList.get(0);}
+
+        while(numList.size() > 1) {
+            num1 = (double) numList.get(0);
+            num2 = (double) numList.get(1);
+            latestOperation = (String) operatorList.get(0);
+
+            var result = switch (latestOperation) {
+                case "+" -> latestValue = num1 + num2;
+                case "-" -> latestValue = num1 - num2;
+                case "x" -> latestValue = num1 * num2;
+                case "/" -> latestValue = num1 / num2;
+                case "" -> latestValue = Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            screen = String.valueOf(latestValue);
+
+            numList.set(0, latestValue);
+            numList.remove(1);
+            operatorList.remove(0);
+        }
+    }
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
      * Wurde zuvor keine Operationstaste gedrückt, passiert nichts.
@@ -117,15 +174,24 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
+       /* var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "" -> latestValue = Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+        */
+        //letzte Zahl auf dem Screen hinzufügen
+        numList.add(Double.parseDouble(screen));
+        calc();
+
+        screen = Double.toString(latestValue);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //Listen frei machen
+        operatorList.removeAll(operatorList);
+        numList.removeAll(numList);
     }
 }
