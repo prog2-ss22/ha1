@@ -10,7 +10,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
-    void testPositiveAddition() {
+     public void testPositiveAddition() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
@@ -39,7 +39,27 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    
+    
+    @Test
+    @DisplayName("should display result after getting two numbers division")
 
-    //TODO hier weitere Tests erstellen
+    public void testDivision(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey( "/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+        
+
+        
+    }
+    
 }
 
