@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean passDecimal = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -31,8 +33,7 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-
+        if(screen.equals("0") || (latestValue == Double.parseDouble(screen) && (!passDecimal))) screen = "";
         screen = screen + digit;
     }
 
@@ -48,6 +49,7 @@ public class Calculator {
         screen = "0";
         latestOperation = "";
         latestValue = 0.0;
+        passDecimal = false;
     }
 
     /**
@@ -62,6 +64,7 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        passDecimal = false;
     }
 
     /**
@@ -81,6 +84,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        passDecimal = false;
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
@@ -93,7 +97,10 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.endsWith(".")) {
+        screen = screen + ".";
+        passDecimal = true;
+        }
     }
 
     /**
@@ -121,10 +128,12 @@ public class Calculator {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "/" -> Double.parseDouble(screen) != 0 ? (latestValue / Double.parseDouble(screen)) : Double.NaN;
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+
+        screen = Double.isNaN(result) ? "error" : Double.toString(result);
+        passDecimal = false;
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }

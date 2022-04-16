@@ -40,6 +40,59 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after substracting two decimal numbers")
+    void testDecimalSubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+        
+        String expected = "1.109";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual.substring(0, 5));
+    }
+
+    @Test
+    @DisplayName("should display result after using percentage operand on decimal numbers")
+    void testPercentageOperand() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("%");
+        
+        String expected = "0.009";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual.substring(0, 5));
+    }
+
+    @Test
+    @DisplayName("should display an error after dividing through zero")
+    void testDividingByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
