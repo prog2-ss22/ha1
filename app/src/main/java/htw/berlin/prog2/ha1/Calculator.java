@@ -7,11 +7,19 @@ package htw.berlin.prog2.ha1;
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
 public class Calculator {
-
+    /**
+     * Stellt den aktuellen Inhalt des Bildschirms an.
+     */
     private String screen = "0";
 
+    /**
+     * Hält den zuletzt errechneten Wert.
+     */
     private double latestValue;
 
+    /**
+     * Hält die zuletzt benutzte Rechenoperation.
+     */
     private String latestOperation = "";
 
     /**
