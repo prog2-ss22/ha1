@@ -41,5 +41,61 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+
+    //Teilaufgabe 1
+    @Test
+    @DisplayName("should display result after multipling two numbers")
+    void testMultipling() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2
+    @Test
+    @DisplayName("should display an error")
+    void testDivideByZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display the result of adding two postive numbers")
+    void testMultipleDots(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "7.31";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
