@@ -77,19 +77,18 @@ class CalculatorTest {
     }
 
 
-    @Test //added (Task 2) NOT FUNCTIONALLY [neu!!! für 2.roten Test]
-    @DisplayName("should display result after adding two negative multi-digit numbers")
-    void testNegativeAddition() {
+    @Test //added (Task 2) NOT FUNCTIONALLY [2.roten Test, überarbeitet]
+    @DisplayName("should display result after adding a negative and a positive multi-digit number")
+    void testNegPosAddition() {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
         calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("+");
-        calc.pressNegativeKey();
         calc.pressDigitKey(6);
         calc.pressEqualsKey();
 
-        String expected = "-10";
+        String expected = "2";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
