@@ -40,6 +40,61 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test //added (Task 1) DONE
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testPositivMultiply() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "30";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test //added (Task 2) DONE
+    @DisplayName("should display result after adding two positive multi-digit numbers, but used clear-key to change the second summand")
+    void testClearScreen() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+
+        calc.pressClearKey();
+
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "8";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test //added (Task 2) NOT FUNCTIONALLY [2.roten Test, überarbeitet]
+    @DisplayName("should display result after adding a negative and a positive multi-digit number")
+    void testNegPosAddition() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(6);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
     //TODO hier weitere Tests erstellen
 }
 

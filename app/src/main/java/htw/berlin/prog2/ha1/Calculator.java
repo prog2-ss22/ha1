@@ -14,6 +14,10 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private short clearPressed = 0;
+
+    private boolean negation = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -22,18 +26,31 @@ public class Calculator {
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
+     * Hängt, falls die Negationstaste gedrückt wurde, ein Minuszeichen vor den String.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+        clearPressed = 0;
+
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
-        screen = screen + digit;
+        if (negation) {
+            if (screen.startsWith("-")) {
+                screen.substring(1);
+            }
+            else screen = "-" + screen + digit;
+            negation = false;
+        }
+        else screen = screen + digit;
+
+        // System.out.println("Zahl:" + screen + " " + latestValue + " " + latestOperation); //test
     }
 
     /**
@@ -46,11 +63,17 @@ public class Calculator {
      */
     public void pressClearKey() {
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        clearPressed++;
+        negation = false;
+
+        if (clearPressed > 1) {
+            latestOperation = "";
+            latestValue = 0.0;
+        }
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Wert einer gedrückten binären Operationstaste, also eine der vier Operationen
      * Addition, Substraktion, Division, oder Multiplikation, welche zwei Operanden benötigen.
      * Beim ersten Drücken der Taste wird der Bildschirminhalt nicht verändert, sondern nur der
@@ -60,11 +83,15 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        clearPressed = 0;
         latestValue = Double.parseDouble(screen);
+        negation = false;
         latestOperation = operation;
+        // System.out.println("Operation: " + screen + " " + latestValue + " " + latestOperation); //test
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
      * Quadratwurzel, Prozent, Inversion, welche nur einen Operanden benötigen.
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
@@ -72,6 +99,8 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
+        clearPressed = 0;
+        negation = false;
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
@@ -86,6 +115,7 @@ public class Calculator {
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
      * Seite hinzu und aktualisiert den Bildschirm. Daraufhin eingegebene Zahlen werden rechts vom
@@ -93,10 +123,12 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
+        clearPressed = 0;
         if(!screen.endsWith(".")) screen = screen + ".";
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Befehl der gedrückten Vorzeichenumkehrstaste ("+/-").
      * Zeigt der Bildschirm einen positiven Wert an, so wird ein "-" links angehängt, der Bildschirm
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
@@ -104,10 +136,14 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
+        clearPressed = 0;
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        // System.out.println("Minus: " + screen + " " + latestValue + " " + latestOperation); //test
+        negation = !negation;
     }
 
     /**
+     * Setzt die Zahl zurück, welche zählt wie oft die Clear-Teste zuletzt gedrückt wurde.
      * Empfängt den Befehl der gedrückten "="-Taste.
      * Wurde zuvor keine Operationstaste gedrückt, passiert nichts.
      * Wurde zuvor eine binäre Operationstaste gedrückt und zwei Operanden eingegeben, wird das
@@ -117,6 +153,7 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        clearPressed = 0;
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
