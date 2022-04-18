@@ -46,9 +46,14 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if(screen != "0"){
+            screen = "0";
+        }
+        else {
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+
     }
 
     /**
@@ -62,9 +67,9 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
-        /**if(latestOperation != ""){
+        if(latestOperation != ""){
             pressEqualsKey();
-        }*/
+        }
         latestOperation = operation;
 
     }
@@ -132,5 +137,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        latestOperation = "";
     }
 }
