@@ -78,6 +78,23 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display decimal number beginning with zero")
+    void testDecimalNumberBeginningWithZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressDotKey();
+        System.out.println(calc.readScreen());
+        calc.pressDigitKey(3);
+        System.out.println(calc.readScreen());
+
+        String expected = "0.3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
     //TODO hier weitere Tests erstellen
 }
 

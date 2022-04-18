@@ -10,7 +10,7 @@ public class Calculator {
 
     private String screen = "0";
 
-    private double latestValue;
+    private double latestValue = 0.0;
 
     private String latestOperation = "";
 
@@ -100,14 +100,17 @@ public class Calculator {
     }
 
     /**
-     * Empfängt den Befehl der gvedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
+     * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
      * Seite hinzu und aktualisiert den Bildschirm. Daraufhin eingegebene Zahlen werden rechts vom
      * Trennzeichen angegeben und daher als Dezimalziffern interpretiert.
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.endsWith(".")) {
+            screen = screen + ".";
+        }
+
     }
 
     /**
