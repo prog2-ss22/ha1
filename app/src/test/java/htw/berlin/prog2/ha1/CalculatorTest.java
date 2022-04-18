@@ -59,7 +59,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result adding three multi-digit numebrs")
+    @DisplayName("should display result after adding three multi-digit numbers")
     void testAddingMultipleNumbers(){
         Calculator calc = new Calculator();
 
