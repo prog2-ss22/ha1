@@ -54,9 +54,9 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-    /**@Test
+    @Test
     @DisplayName("should display result after adding two positive multi-digit numbers and then adding continue numbers ")
-    /**void test2maladding () {
+    void test2maladding () {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
@@ -94,7 +94,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
 
-    }*/
+    }
 
 
 

@@ -62,9 +62,9 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
-        if(latestOperation != ""){
+        /**if(latestOperation != ""){
             pressEqualsKey();
-        }
+        }*/
         latestOperation = operation;
 
     }
