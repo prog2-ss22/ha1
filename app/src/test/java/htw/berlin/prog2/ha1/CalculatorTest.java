@@ -58,5 +58,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+    @Test
+    @DisplayName("should show Error after dividing 1 with 0")
+    void testDivide() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
