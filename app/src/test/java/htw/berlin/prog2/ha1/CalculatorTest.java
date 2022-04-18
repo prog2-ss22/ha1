@@ -86,7 +86,6 @@ class CalculatorTest {
 
         calc.pressDigitKey(0);
         calc.pressDotKey();
-        System.out.println(calc.readScreen());
         calc.pressDigitKey(3);
         System.out.println(calc.readScreen());
 
