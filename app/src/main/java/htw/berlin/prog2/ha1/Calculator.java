@@ -53,9 +53,12 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if(screen == "0") {
+            latestOperation = "";
+            latestValue = 0.0;
+        } else {
+            screen = "0";
+        }
     }
 
     /**
@@ -101,7 +104,7 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.contains(".")) screen = screen + ".";
     }
 
     /**
@@ -125,6 +128,9 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        if (latestOperation == "") {
+            return;
+        }
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
