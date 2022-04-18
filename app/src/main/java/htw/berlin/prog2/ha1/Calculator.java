@@ -31,7 +31,7 @@ public class Calculator {
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
-     * Hängt, falls die Negationstaste gedrückt wurde, ein
+     * Hängt, falls die Negationstaste gedrückt wurde, ein Minuszeichen vor den String.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
@@ -46,6 +46,7 @@ public class Calculator {
                 screen.substring(1);
             }
             else screen = "-" + screen + digit;
+            negation = false;
         }
         else screen = screen + digit;
 
