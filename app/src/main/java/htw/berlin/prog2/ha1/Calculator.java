@@ -121,11 +121,25 @@ public class Calculator {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "/" -> divide();
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+
+        if(Double.parseDouble(screen) == 0.0 && latestOperation.equals("/"))
+            screen = "Error";
+        else
+            screen = Double.toString(result);
+
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+    public double divide() {
+        if(Double.parseDouble(screen) != 0.0) {
+            return latestValue / Double.parseDouble(screen);
+        }
+        else {
+            return 0.0;
+        }
     }
 }
