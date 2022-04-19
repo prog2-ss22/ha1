@@ -70,7 +70,7 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressUnaryOperationKey("%");
 
-        String expected = "0.1";
+        String expected = "0.15";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -88,7 +88,7 @@ class CalculatorTest {
 
         calc.pressEqualsKey();
 
-        String expected = "3,82352941";
+        String expected = "3.82352941";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
