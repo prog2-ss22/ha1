@@ -41,5 +41,26 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+// Aufgabe 1 Multiplikation mit 2 positiven Zahlen
+
+    @Test
+    @DisplayName("should display result after getting the multiplikate of two")
+    void testMultiplikation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "20";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
+
 
