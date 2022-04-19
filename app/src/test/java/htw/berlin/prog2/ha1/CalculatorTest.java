@@ -124,6 +124,15 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after getting the square root of two")
+    void testSquareRootNegativeNumber() {
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        assertThrows(IllegalArgumentException.class, () -> calc.pressUnaryOperationKey("√"));
+    }
+
+    @Test
+    @DisplayName("should display result after getting the square root of two")
     void testFailureSquareRoot() {
         calc.pressDigitKey(2);
         assertThrows(IllegalArgumentException.class, () -> calc.pressUnaryOperationKey("ERROR"));
@@ -190,23 +199,5 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    @DisplayName("should display result after correction getting the square root of two")
-    void testKorrektur() {
-
-        calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("√");
-        calc.pressClearKey();
-        calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("√");
-        String expected = "1.41421356";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-
-
-    //TODO hier weitere Tests erstellen
 }
 
