@@ -14,16 +14,6 @@ public class Calculator {
 
     private String latestOperation = "";
 
-    public static void main(String[] args){
-
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressNegativeKey();
-        calc.pressBinaryOperationKey("√");
-
-        System.out.println(calc.readScreen());
-    }
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -90,13 +80,8 @@ public class Calculator {
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
-
-
-
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-        if(screen.contains("NaN")) screen = "Error";
-
 
     }
 
@@ -132,23 +117,13 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
-
             default -> throw new IllegalArgumentException();
-
         };
-
-        // Version 1
-        if(latestOperation.equals("/") && screen.equals("0")) {
-            screen = "Error";
-            return;
-        }
-
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
