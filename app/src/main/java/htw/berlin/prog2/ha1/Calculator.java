@@ -5,6 +5,7 @@ package htw.berlin.prog2.ha1;
  * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
  * und dessen Bildschirm bis zu zehn Ziffern plus einem Dezimaltrennzeichen darstellen kann.
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
+ *
  */
 public class Calculator {
 
@@ -45,9 +46,14 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        if(screen != "0"){
+            screen = "0";
+        }
+        else {
+            latestOperation = "";
+            latestValue = 0.0;
+        }
+
     }
 
     /**
@@ -61,7 +67,11 @@ public class Calculator {
      */
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
+        if(latestOperation != ""){
+            pressEqualsKey();
+        }
         latestOperation = operation;
+
     }
 
     /**
@@ -127,5 +137,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        latestOperation = "";
     }
 }
