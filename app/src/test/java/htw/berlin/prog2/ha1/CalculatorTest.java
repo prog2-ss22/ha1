@@ -41,7 +41,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("shoulf display result after multiplying 2 positive numbers")
+    @DisplayName("should display result after multiplying 2 positive numbers")
     void testMultiplication()
     {
         Calculator calc = new Calculator();
@@ -52,6 +52,38 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "20";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display Error after dividing a number with zero")
+    void testDivisionWithZero()
+    {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display Error after getting the square root of a negative number")
+    void testNegativeSquareRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
