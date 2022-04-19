@@ -54,6 +54,7 @@ class CalculatorTest {
     }
     @Test
     @DisplayName("")
+
     void test2(){
         Calculator calc = new Calculator();
         calc.pressDigitKey(8);
