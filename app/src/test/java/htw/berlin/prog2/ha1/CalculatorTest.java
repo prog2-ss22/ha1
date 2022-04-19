@@ -37,6 +37,7 @@ class CalculatorTest {
         String expected = "1.41421356";
         String actual = calc.readScreen();
 
+
         assertEquals(expected, actual);
     }
     
@@ -50,17 +51,14 @@ class CalculatorTest {
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey( "/");
+        calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
         String expected = "5";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
-        
-
-        
     }
-    
+
 }
 
