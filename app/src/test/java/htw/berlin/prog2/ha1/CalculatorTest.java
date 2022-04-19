@@ -57,6 +57,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //Aufgabe 2
+    @Test
+    @DisplayName("should display 'Error' after divide the digit number two by zero")
+
+    void testDivideByZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 
