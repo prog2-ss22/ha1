@@ -41,5 +41,63 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        
+        calc.pressEqualsKey();
+
+        String expected = "1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should display error after dividing a number by zero")
+    void testDivisionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        
+        calc.pressEqualsKey();
+
+        String expected = "Error! Man kann keine Zahl durch Null teilen";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should display Error after calculating the square root of a negative number")
+    void testNegativeSquare() {
+        Calculator calc = new Calculator();
+
+        //calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+        //calc.pressDigitKey(0);
+        
+        //calc.pressEqualsKey();
+
+        String expected = "Error!";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    
 }
 
