@@ -75,7 +75,7 @@ public class Calculator {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
+            case "√" -> Math.sqrt(checkSign(Double.parseDouble(screen)));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / checkDivider(Double.parseDouble(screen));
             default -> throw new IllegalArgumentException();
@@ -132,6 +132,14 @@ public class Calculator {
     private double checkDivider(double screenValue) {
         if(screenValue == 0.0) {
             throw new IllegalArgumentException("Teilen durch 0 nicht moeglich");
+        } else {
+            return Double.parseDouble(screen);
+        }
+    }
+
+    private double checkSign(double screenValue) {
+        if(screenValue < 0.0) {
+            throw new IllegalArgumentException("Ungueltige Eingabe");
         } else {
             return Double.parseDouble(screen);
         }
