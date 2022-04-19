@@ -63,13 +63,28 @@ class CalculatorTest {
     void testSquareRootError() {
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey();
         calc.pressDigitKey(3);
-        calc.pressEqualsKey();
+        calc.pressNegativeKey();
         calc.pressUnaryOperationKey("√");
 
 
         String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display 0 after pressing clear key")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+
+
+
+        String expected = "0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
