@@ -101,9 +101,10 @@ class CalculatorTest {
         calc.pressNegativeKey();
 
         calc.pressBinaryOperationKey("x");
-        calc.pressNegativeKey();
+
         calc.pressDigitKey(5);
-        ;
+        calc.pressNegativeKey();
+
 
 
         calc.pressEqualsKey();
@@ -113,6 +114,29 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after divining by zero")
+    void testdividedbyzero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+       ;
+
+        calc.pressBinaryOperationKey("/");
+
+        calc.pressDigitKey(0);
+
+
+
+
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 }
