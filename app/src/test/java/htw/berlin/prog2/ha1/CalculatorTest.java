@@ -46,7 +46,7 @@ class CalculatorTest {
     @Test
     @DisplayName("should display result after getting two numbers division")
 
-    void testDivision(){
+   public void testDivision(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
@@ -57,13 +57,14 @@ class CalculatorTest {
 
         String expected = "5";
         String actual = calc.readScreen();
+
         assertEquals(expected, actual);
     }
     //should display error after getting the square root of zero
     @Test
     @DisplayName("should display error after getting division by zero")
 
-     void testZeroDivision(){
+   public static void testZeroDivision(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
@@ -76,7 +77,9 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+
     }
+
 
 }
 
