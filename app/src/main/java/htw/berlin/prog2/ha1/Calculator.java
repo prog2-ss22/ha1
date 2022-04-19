@@ -60,6 +60,9 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if(!latestOperation.equals("")) {
+            pressEqualsKey();
+        }
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
     }
@@ -71,9 +74,14 @@ public class Calculator {
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
+
+    /*
+    Bug Nummer 1:
+    Die UnaryOperationen überschreiben die latestOperation und dadurch kommt es beim Equalskey zu einer Exception
+    Bug Nummer 2:
+    Der Latest Value überschreibt den 1. Operanden einer Gleichung, sodass ein falsches Ergebnis rauskommt, wenn mehrere Operationen ohne Gleichzeichen durchgeführt werden.
+     */
     public void pressUnaryOperationKey(String operation) {
-        latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
@@ -127,5 +135,6 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        latestOperation = "";
     }
 }
