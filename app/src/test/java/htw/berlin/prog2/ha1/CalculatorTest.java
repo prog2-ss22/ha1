@@ -39,8 +39,9 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
-    @DisplayName("should display result after getting the square root of two")
+    @DisplayName("should display result after subtract two numbers")
     void testnegative() {
         Calculator calc = new Calculator();
 
@@ -57,5 +58,18 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-}
+    @Test
+    @DisplayName("should display result after divide a number with 0")
+    void testdivision() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+}
