@@ -41,5 +41,54 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("Test zu Teilaufg. 1 - nach drücken der 'CE'-Taste soll '0' angezeigt werden")
+    void testClearFunction() {
+        Calculator calculator = new Calculator();
+
+        calculator.pressDigitKey(8);
+        calculator.pressBinaryOperationKey("-");
+        calculator.pressDigitKey(1);
+        calculator.pressEqualsKey();
+        calculator.pressClearKey();
+
+        assertEquals("0" , calculator.readScreen());
+    }
+
+    @Test
+    @DisplayName("Test zu Teilaufg. 2 - Division durch null fuehrt zu Fehlermeldung ")
+    void testDivideByNull() {
+        Calculator calculator = new Calculator();
+        calculator.pressDigitKey(7);
+        calculator.pressBinaryOperationKey("/");
+        calculator.pressDigitKey(0);
+        calculator.pressEqualsKey();
+
+        var expected = "Error";
+        var actual = calculator.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Teilaufg. 2 - zweiter Test zu Fliesskommazahlen bzw. Rundungsfehler")
+    void testFloatingPointNumbers() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        assertEquals("22.88", calc.readScreen());
+    }
+
 }
 
