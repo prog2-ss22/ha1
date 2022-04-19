@@ -93,7 +93,7 @@ class CalculatorTest {
         calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
-        String expected = "10000000";
+        String expected = "1.0E7";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
