@@ -42,8 +42,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after subtract two positiv numbers")
-    void testPositivubtraction(){
+    @DisplayName("should display result after subtracting two positive numbers")
+    void testPositiveSubtraction(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(8);

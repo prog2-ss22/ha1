@@ -71,9 +71,16 @@ public class Calculator {
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
+
+    /*
+    Bug Nummer 1:
+    Die UnaryOperationen überschreiben die latestOperation und dadurch kommt es beim Equalskey zu einer Exception
+    Bug Nummer 2:
+    Der Latest Value überschreibt den 1. Operanden einer Gleichung, sodass ein falsches Ergebnis rauskommt, wenn mehrere Operationen ohne Gleichzeichen durchgeführt werden.
+     */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        //latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
