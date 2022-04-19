@@ -59,6 +59,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    // first Red Test
+    @Test
+    @DisplayName("should display result of the square root of a negative number")
+    void testFailNumber1() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        //calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 }
 
