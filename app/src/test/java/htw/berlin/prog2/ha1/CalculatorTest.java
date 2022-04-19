@@ -78,8 +78,41 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should clear display")
+    void testClear() {
+        Calculator calc = new Calculator();
 
 
+
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after multiply 2 negative digit numbers")
+    void testminutimesminus() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressNegativeKey();
+
+        calc.pressBinaryOperationKey("x");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(5);
+        ;
+
+
+        calc.pressEqualsKey();
+
+        String expected = "30";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 
 }
