@@ -73,15 +73,16 @@ public class Calculator {
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
-        latestOperation = operation;
+        //latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
+            case "%" -> Double.parseDouble(screen) / 100 * latestValue;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
 
     }
 
