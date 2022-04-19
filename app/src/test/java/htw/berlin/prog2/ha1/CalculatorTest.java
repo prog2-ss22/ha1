@@ -1,5 +1,6 @@
 package htw.berlin.prog2.ha1;
 
+import org.checkerframework.common.value.qual.StaticallyExecutable;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -80,5 +81,8 @@ class CalculatorTest {
 
 
     }
+
+
+
 }
 
