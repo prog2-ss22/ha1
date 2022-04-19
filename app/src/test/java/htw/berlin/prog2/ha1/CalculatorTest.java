@@ -41,5 +41,53 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should not display another dot after already pressing a dot")
+    void testPressDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+
+        String expected = "1.2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display Error after using square root for a negative number")
+    void testSquareRootError() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display 0 after pressing clear key")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressClearKey();
+
+
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
