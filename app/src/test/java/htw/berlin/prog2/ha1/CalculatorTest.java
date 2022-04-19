@@ -39,7 +39,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after subtracting two numbers")
+    void testSubstraction() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
 }
 
