@@ -42,6 +42,24 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("should display result after adding three positive numbers before pressing equals")
+    void testMultipleAddition() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "6";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display result after subtracting two positive numbers")
     void testPositiveSubtraction(){
         Calculator calc = new Calculator();
@@ -52,6 +70,23 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after adding a square root to a positive number")
+    void testAddingSquareRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("√");
+        calc.pressEqualsKey();
+
+        String expected = "7";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
