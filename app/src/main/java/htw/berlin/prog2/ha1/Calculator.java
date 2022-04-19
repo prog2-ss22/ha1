@@ -10,7 +10,7 @@ public class Calculator {
 
     private String screen = "0";
 
-    private double latestValue;
+    private double latestValue = 0.0;
 
     private String latestOperation = "";
 
@@ -31,9 +31,13 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0.")){
+            screen = "0." + digit;
+        } else {
+            if (screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
-        screen = screen + digit;
+            screen = screen + digit;
+        }
     }
 
     /**
@@ -59,8 +63,22 @@ public class Calculator {
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
-    public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
+    public void pressBinaryOperationKey(String operation) {
+        //latestValue = Double.parseDouble(screen);
+        //latestOperation = operation;
+
+        if(latestOperation.isEmpty()){
+            latestValue = Double.parseDouble(screen);
+        } else {
+            latestValue = switch(latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+        }
+        screen = "0";
         latestOperation = operation;
     }
 
@@ -93,7 +111,10 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.endsWith(".")) {
+            screen = screen + ".";
+        }
+
     }
 
     /**
