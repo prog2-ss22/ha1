@@ -18,6 +18,9 @@ public class Calculator {
      * @return den aktuellen Bildschirminhalt als String
      */
     public String readScreen() {
+
+        // Teilaufgabe 3 - Loesung zu 1. Test aus Teilaufgabe 2
+        if(screen.equals("Infinity")) screen = "Error";
         return screen;
     }
 
@@ -137,7 +140,5 @@ public class Calculator {
             screen = Double.toString(useMathDotRoundMethod);
         }
 
-        // Teilaufgabe 3 - Loesung zu 1. Test aus Teilaufgabe 2
-        if(screen.equals("Infinity")) screen = "Error";
     }
 }
