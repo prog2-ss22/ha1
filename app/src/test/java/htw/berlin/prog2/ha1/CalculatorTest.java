@@ -68,6 +68,26 @@ class CalculatorTest {
         assertEquals(expected,actual);
     }
 
+    @Test
+    @DisplayName("")
+
+    void test3(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        System.out.println(calc.readScreen());
+
+        String expected = "21";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+
     //TODO hier weitere Tests erstellen
 }
 
