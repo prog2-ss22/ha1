@@ -153,12 +153,12 @@ public class Calculator {
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
         /**
-         * Um den Feheler Nummer 2 zu läsen wird ein "Error" ausgeben wenn die Operation "/" und screen "Infinity" ausgibt
+         * Um den Feheler Nummer 1 zu läsen wird ein "Error" ausgeben wenn die Operation "/" und screen "Infinity" ausgibt
          */
 
-        /** if(latestOperation.equals("/") && screen.equals("Infinity")){
+         if(latestOperation.equals("/") && screen.equals("Infinity")){
          screen = "Error";
          return;
-         }*/
+         }
     }
 }
