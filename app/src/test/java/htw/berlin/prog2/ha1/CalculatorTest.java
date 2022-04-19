@@ -41,5 +41,57 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+// Aufgabe 1 Multiplikation mit 2 positiven Zahlen
+
+    @Test
+    @DisplayName("should display result after getting the multiplikate of two")
+    void testMultiplikation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "20";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    //Aufgabe 2 Division einer Zahl durch 0
+    @Test
+    @DisplayName("should display the result after the division by zero")
+    void testDivisionByZero () {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    // Aufgabe 2 Wurzelrechnen mit einer negativen Zahl
+    @Test
+    @DisplayName("should display result after getting the square root with negative number")
+    void testNegativeSquareRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
+
 

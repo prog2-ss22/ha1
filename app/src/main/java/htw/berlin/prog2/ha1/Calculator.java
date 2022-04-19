@@ -82,6 +82,8 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        // fix für den zweiten roten Test, NaN zu ERROR umschrieben
+        if(screen.equals("NaN"))screen = "ERROR";
 
     }
 
@@ -127,5 +129,8 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //Aufgabe 3 für den ersten roten Test wurde Infinity zu ERROR umschrieben
+        if(screen.equals("Infinity")) screen = "ERROR";
+
     }
 }
