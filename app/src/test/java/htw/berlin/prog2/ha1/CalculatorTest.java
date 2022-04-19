@@ -40,6 +40,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("")
+
+    void testMult(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected ="4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+
     //TODO hier weitere Tests erstellen
 }
 
