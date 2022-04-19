@@ -60,6 +60,22 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
+    //Aufgabe 2 Division einer Zahl durch 0
+    @Test
+    @DisplayName("should display the result after the division by zero")
+    void testDivisionByZero () {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
