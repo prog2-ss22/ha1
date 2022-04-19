@@ -57,7 +57,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("Test")
+    @DisplayName("Test: 1/0 = Error")
     void testSquereZero() {
         Calculator calc = new Calculator();
         calc.pressDigitKey(1);
@@ -65,6 +65,17 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
         String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Display 3. not 3.0")
+    void testSquereroot() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+        String expected = "3";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
