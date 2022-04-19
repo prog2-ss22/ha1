@@ -90,11 +90,11 @@ public class Calculator {
          * Es kann keine Wurzel aus NUll oder negativen Zahlen gezogen werden
          */
 
-        /**
+
         if(latestOperation.equals("√") && latestValue < 1){
             screen = "Error";
             return;
-        }*/
+        }
 
     }
 
