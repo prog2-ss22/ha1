@@ -86,6 +86,9 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
+        //Aufgabe 3 NaN-Error
+        if(screen.endsWith("NaN")) screen = "Error";
+
 
     }
 
