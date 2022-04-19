@@ -40,7 +40,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     
-    
+
+
     @Test
     @DisplayName("should display result after getting two numbers division")
 
