@@ -13,14 +13,14 @@ class CalculatorTest {
     void testPositiveAddition() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(4);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "40";
+        String expected = "90";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -41,5 +41,25 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositiveSubtraktion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
