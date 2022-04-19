@@ -76,6 +76,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // Aufgabe 2 Wurzelrechnen mit einer negativen Zahl
+    @Test
+    @DisplayName("should display result after getting the square root with negative number")
+    void testNegativeSquareRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
