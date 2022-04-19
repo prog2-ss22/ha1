@@ -51,8 +51,23 @@ class CalculatorTest {
         String expected = "1";
         String actual = calc.readScreen();
         assertEquals(expected, actual);
-
     }
+
+    @Test
+    @DisplayName("")
+    void test2(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected ="Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
     //TODO hier weitere Tests erstellen
 }
 
