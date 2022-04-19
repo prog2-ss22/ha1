@@ -52,7 +52,6 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
-
     @Test
     @DisplayName("")
     void test2(){
