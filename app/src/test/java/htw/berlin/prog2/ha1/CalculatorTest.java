@@ -60,24 +60,37 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    //should display error after getting the square root of zero
+
     @Test
     @DisplayName("should display error after getting division by zero")
 
-   public static void testZeroDivision(){
+    public static void testZeroDivision(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(0);
         calc.pressEqualsKey();
+        calc.pressDigitKey(0);
 
         String expected = "error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display error after getting the square root of zero")
 
+    public static void testRootDivisionWithZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 
 
