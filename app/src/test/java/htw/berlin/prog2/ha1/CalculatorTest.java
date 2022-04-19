@@ -82,7 +82,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after divide two positive multi-digit numbers")
+    @DisplayName("display shows 'Error' after dividing a positive number by zero")
     void testDivisionZero() {
         Calculator calc = new Calculator();
 
@@ -100,15 +100,15 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after divide two negative multi-digit numbers")
+    @DisplayName("should display result after dividing two negative multi-digit numbers")
     void testNegativeDivision() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
+        calc.pressNegativeKey();
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
-        calc.pressBinaryOperationKey("-");
+        calc.pressNegativeKey();
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
