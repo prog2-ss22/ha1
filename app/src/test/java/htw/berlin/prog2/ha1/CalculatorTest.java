@@ -122,6 +122,91 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testFailureSquareRoot() {
+        calc.pressDigitKey(2);
+        assertThrows(IllegalArgumentException.class, () -> calc.pressUnaryOperationKey("ERROR"));
+    }
+
+
+    //-----------------------------------------------------------------------------------------
+    // Division
+    //-----------------------------------------------------------------------------------------
+
+    @Test
+    @DisplayName("should display result after subtracting two negative multi-digit numbers")
+    void testPositiveDivision() {
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);              // 20
+        calc.pressNegativeKey();            // -20
+        calc.pressBinaryOperationKey("/");  // /
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);              // 20
+        calc.pressEqualsKey();              // = -1
+
+        String expected = "-1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after subtracting two negative multi-digit numbers")
+    void testPositiveDivisionAlternative2() {
+
+        calc.pressDigitKey(0);              // 0
+        calc.pressBinaryOperationKey("/");  // /
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);              // 20
+        calc.pressEqualsKey();              // = 0
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after subtracting two negative multi-digit numbers")
+    void testFailureDivisionByZero() {
+
+        calc.pressDigitKey(2);              // 2
+        calc.pressBinaryOperationKey("/");  // /
+        calc.pressDigitKey(0);              // 0
+        assertThrows(IllegalArgumentException.class, () -> calc.pressEqualsKey());
+
+    }
+
+    @Test
+    @DisplayName("should display result after one negative multi-digit to one positive multi-digit number")
+    void testDotkey() {
+        calc.pressDigitKey(2);
+        calc.pressDotKey();    // 2.5
+        calc.pressDigitKey(5);
+        String expected = "2.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after correction getting the square root of two")
+    void testKorrektur() {
+
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+        String expected = "1.41421356";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
     //TODO hier weitere Tests erstellen
 }
 
