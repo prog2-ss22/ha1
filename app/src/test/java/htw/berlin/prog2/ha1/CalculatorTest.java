@@ -39,7 +39,46 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("should display result after subtracting two numbers")
+    void testSubstraction() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+
+    @Test
+    @DisplayName("Test: 1/0 = Error")
+    void testSquereZero() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Display 3. not 3.0")
+    void testSquereroot() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+        String expected = "3";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+
 }
 
