@@ -82,6 +82,9 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        // fix für den zweiten roten Test, NaN zu ERROR umschrieben
+        if(screen.equals("NaN"))screen = "ERROR";
+
     }
 
     /**
