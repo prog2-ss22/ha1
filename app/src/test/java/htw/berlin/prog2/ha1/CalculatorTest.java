@@ -58,7 +58,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-
     @Test
     @DisplayName("should show Error after dividing 1 with 0")
     void testDivide() {
@@ -74,6 +73,24 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should show subtracting 1 with 0")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+        calc.pressDotKey();
+        calc.pressDigitKey(1);
+
+        String expected = "1.11";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 }
 
