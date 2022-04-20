@@ -1,5 +1,6 @@
 package htw.berlin.prog2.ha1;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -104,6 +105,7 @@ class CalculatorTest {
     String actual = calculator.readScreen();
     assertEquals(expected, actual);
   }
+
   @Test
   @DisplayName("should display correct result for addition after pressing clear two times")
   void testClearAndCheckResult() {
@@ -117,5 +119,39 @@ class CalculatorTest {
     String expected = "12";
     String actual = calculator.readScreen();
     assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName("should display correct result after executing multiple operations in a row")
+  void testMultipleOperations() {
+    Calculator calculator = new Calculator();
+    calculator.pressDigitKey(2);
+    calculator.pressBinaryOperationKey("x");
+    calculator.pressDigitKey(3);
+    calculator.pressBinaryOperationKey("-");
+    calculator.pressDigitKey(5);
+    calculator.pressBinaryOperationKey("+");
+    String expected = "1";
+    String actual = calculator.readScreen();
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  @DisplayName("Should return Error if dividing by 0")
+  void testDivideByZero() throws Exception {
+    Calculator calculator = new Calculator();
+    IllegalArgumentException thrown = Assertions
+        .assertThrows(IllegalArgumentException.class, () -> {
+          calculator.pressDigitKey(4);
+          calculator.pressBinaryOperationKey("x");
+          calculator.pressDigitKey(3);
+          calculator.pressBinaryOperationKey("/");
+          calculator.pressDigitKey(0);
+          calculator.pressBinaryOperationKey("+");
+        }, "IllegalArgumentException was expected");
+    String expected = "Error";
+    String actual = calculator.readScreen();
+    assertEquals(expected, actual);
+    Assertions.assertEquals("Error", thrown.getMessage());
   }
 }
