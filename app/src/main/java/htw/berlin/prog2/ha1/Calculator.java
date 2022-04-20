@@ -19,7 +19,7 @@ public class Calculator {
      */
     public String readScreen() {
 
-       // if(screen.equals("Infinity")) screen = "Error";
+        if(screen.equals("Infinity")) screen = "Error";
         return screen;
     }
 
