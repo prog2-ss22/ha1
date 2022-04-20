@@ -88,5 +88,21 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(actual,expected);
     }
+
+    @Test
+    @DisplayName("calc should display an error when dividing with 0")
+    void testDivisionNull(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
