@@ -8,6 +8,9 @@ package htw.berlin.prog2.ha1;
  */
 public class Calculator {
 
+    // neu (für testAdditionAfterClearing()):
+    private int numberClearKeyPressed = 0;
+
     private String screen = "0";
 
     private double latestValue;
@@ -29,6 +32,10 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+
+        // neu (für testAdditionAfterClearing()):
+        numberClearKeyPressed = 0;
+
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
@@ -45,9 +52,21 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        // neu (für testAdditionAfterClearing()):
+        numberClearKeyPressed += 1;
+
+        if (numberClearKeyPressed == 1) {
+            System.out.println("Hallo " + numberClearKeyPressed);
+            screen = "0";
+        }
+
+
+        if (numberClearKeyPressed == 2) {
+            System.out.println("Hallo " + numberClearKeyPressed);
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
     }
 
     /**
