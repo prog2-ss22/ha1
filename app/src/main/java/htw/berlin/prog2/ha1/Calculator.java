@@ -18,6 +18,9 @@ public class Calculator {
      * @return den aktuellen Bildschirminhalt als String
      */
     public String readScreen() {
+        if(screen.equals("Infinity")){
+            screen = "Error";
+        }
         return screen;
     }
 
@@ -31,9 +34,16 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(!screen.startsWith("-")){                                                                        //wenn die zahl nicht mit null startet
+            if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        }
+        if(screen.equals("-0")){
+            screen = "-";
+        }
 
         screen = screen + digit;
+
+
     }
 
     /**
@@ -104,7 +114,16 @@ public class Calculator {
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+       // screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+
+        if(screen.startsWith("-")){                         //wenn die Zahl mit - Startet und noch ein Minus dazu kommt nehm nur die 1 stelle nicht die nullte
+            screen = screen.substring(1);
+
+        }else{
+            screen = "-" + screen;
+
+        }
+
     }
 
     /**
