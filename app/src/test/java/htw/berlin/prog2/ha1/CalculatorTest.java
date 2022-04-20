@@ -83,19 +83,15 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should show result after multiplying the negative three by four")
-    void testNegativMultiplication(){
+    @DisplayName("should show a negative number if you enter a minus in front of a number")
+    void testNegativNumbers(){
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
         calc.pressDigitKey(3);
 
-        calc.pressBinaryOperationKey("x");
 
-        calc.pressDigitKey(4);
-        calc.pressEqualsKey();
-
-        String expected = "-12";
+        String expected = "-3";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
