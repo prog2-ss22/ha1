@@ -14,6 +14,8 @@ public class Calculator {
 
     private String latestOperation = "";
 
+    private boolean binaryOperation = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -30,10 +32,21 @@ public class Calculator {
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
-
+        boolean negativ = checkNegative();
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
 
-        screen = screen + digit;
+        if(negativ && !(screen.startsWith("-"))){
+            screen = "-" + screen + digit;
+       }else{
+            screen = screen + digit;
+        }
+
+    }
+
+    public boolean checkNegative(){
+        if(screen.startsWith("-")&& !binaryOperation) return true;
+        binaryOperation = false;
+        return false;
     }
 
     /**
@@ -62,6 +75,8 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        binaryOperation =true;
+
     }
 
     /**
@@ -117,15 +132,20 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        if(screen.equals("0") && latestOperation.equals("/")){
+            screen = "ERROR";
+        }else{
+            var result = switch(latestOperation) {
+                case "+" -> latestValue + Double.parseDouble(screen);
+                case "-" -> latestValue - Double.parseDouble(screen);
+                case "x" -> latestValue * Double.parseDouble(screen);
+                case "/" -> latestValue / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            screen = Double.toString(result);
+            if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
+            if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        }
+
     }
 }
