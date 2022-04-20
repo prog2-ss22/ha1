@@ -77,5 +77,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     } //Erster Roter Test ende
 
+    //Zweiter Roter Test
+    @Test
+    @DisplayName("should display number without the extra dot at the end")
+    void testGetRidOfExtraDot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+
+
+        String expected = "2.2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    } // Ende zweiter Roter Test
+
 }
 
