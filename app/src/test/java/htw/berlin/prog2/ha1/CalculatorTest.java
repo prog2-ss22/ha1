@@ -58,5 +58,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display cleared screen")
+    void testClearedScreen(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
