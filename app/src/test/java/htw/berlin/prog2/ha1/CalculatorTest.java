@@ -40,6 +40,19 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 // here where I begin
+@Test
+@DisplayName("should display result after getting the percentage % of number 10 ")
+void testPercentage() {
+    Calculator calc = new Calculator();
 
+    calc.pressDigitKey(1);
+    calc.pressDigitKey(0);
+    calc.pressUnaryOperationKey("%");
+
+    String expected = "0.1";
+    String actual = calc.readScreen();
+
+    assertEquals(expected, actual);
+}
 }
 
