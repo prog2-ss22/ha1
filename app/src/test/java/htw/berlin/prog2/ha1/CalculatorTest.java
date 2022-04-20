@@ -78,6 +78,25 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //2. rote Test
+
+    @Test
+    @DisplayName("should display  be one dot")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+
+        String expected = "7.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 
 
 }
