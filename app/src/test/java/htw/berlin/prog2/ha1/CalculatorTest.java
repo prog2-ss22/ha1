@@ -54,5 +54,22 @@ void testPercentage() {
 
     assertEquals(expected, actual);
 }
+    @Test
+    @DisplayName("should display result of the addition of two negative numbers ")
+    void testNegative() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "-3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
