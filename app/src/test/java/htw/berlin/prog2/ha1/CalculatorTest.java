@@ -60,13 +60,13 @@ void testPercentage() {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
-        calc.pressDigitKey(1);
+        calc.pressDigitKey(7);
         calc.pressBinaryOperationKey("+");
         calc.pressNegativeKey();
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-        String expected = "-3";
+        String expected = "-9";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
