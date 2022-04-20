@@ -59,8 +59,54 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    //Zusätzliche Tests
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testClearOperation() {
+        Calculator calc = new Calculator();
 
-    //Teilaufgabe 2 erster roter Test
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(9);
+        calc.pressEqualsKey();
+        calc.pressClearKey();
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testNegativeKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(7);
+        calc.pressEqualsKey();
+        String expected = "-63";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressDotKey();
+        calc.pressDigitKey(4);
+        calc.pressUnaryOperationKey("1/x");
+        String expected = "00";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //Teilaufgabe 2 und 3
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testPercentage() {
