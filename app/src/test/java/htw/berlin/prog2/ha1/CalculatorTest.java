@@ -100,7 +100,7 @@ class CalculatorTest {
         calc.pressDotKey();
         calc.pressDigitKey(4);
         calc.pressUnaryOperationKey("1/x");
-        String expected = "00";
+        String expected = "0.11904761"; //0.11904762 über des Online-Rechners
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
