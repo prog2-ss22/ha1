@@ -59,4 +59,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    //erster Roter Test: Division einer Zahl durch 0
+    @Test
+    @DisplayName("should display result after  dividing digit number by zero")
+    void testDivisionByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
+
