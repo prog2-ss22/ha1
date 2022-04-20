@@ -72,5 +72,21 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("calc should ignore last dot on the screen")
+    void testSecondDot(){
+
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(9);
+        calc.pressDotKey();
+        calc.pressDigitKey(7);
+        calc.pressDotKey();
+
+        String expected = "99.7";
+        String actual = calc.readScreen();
+        assertEquals(actual,expected);
+    }
 }
 
