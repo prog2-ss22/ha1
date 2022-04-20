@@ -53,7 +53,7 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        if(screen == "0") {
+        if(screen.equals("0")) {
             latestOperation = "";
             latestValue = 0.0;
         } else {
