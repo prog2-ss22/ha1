@@ -56,17 +56,17 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display result after dividing -5 through 5")
+    @DisplayName("should display result after dividing -6 through 2")
     void testNegativeZahlDividieren() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+        calc.pressDigitKey(6);
         calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(5);
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
-        String expected = "-1";
+        String expected = "-3";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);

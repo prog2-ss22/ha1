@@ -29,10 +29,18 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0")) screen = "";
+        if(screen.equals("-0")){
+            int negNum =Integer.parseInt(screen)-digit;
+            screen = Integer.toString(negNum);
+            //System.out.println("test");
+            System.out.println("Ende, neue Funktion"+screen);
+            return;
 
+        }
         screen = screen + digit;
     }
 
@@ -61,8 +69,11 @@ public class Calculator {
      */
 
     public void pressBinaryOperationKey(String operation)  {
+        System.out.println("/ funktioniert");
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        screen = "0";
+        System.out.println("latest Value: "+latestValue);
     }
 
     /**
@@ -106,6 +117,7 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        System.out.println("screen: "+ screen);
     }
 
     /**
@@ -118,6 +130,11 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+        if(latestOperation.equals("/") && screen.equals("0")){
+            screen = "Error";
+            return;
+        }
+        System.out.println(screen);
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
@@ -126,6 +143,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        System.out.println("= "+ screen);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
