@@ -104,4 +104,18 @@ class CalculatorTest {
     String actual = calculator.readScreen();
     assertEquals(expected, actual);
   }
+  @Test
+  @DisplayName("should display correct result for addition after pressing clear two times")
+  void testClearAndCheckResult() {
+    Calculator calculator = new Calculator();
+    calculator.pressDigitKey(5);
+    calculator.pressBinaryOperationKey("+");
+    calculator.pressDigitKey(5);
+    calculator.pressClearKey();
+    calculator.pressDigitKey(7);
+    calculator.pressEqualsKey();
+    String expected = "12";
+    String actual = calculator.readScreen();
+    assertEquals(expected, actual);
+  }
 }
