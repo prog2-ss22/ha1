@@ -59,5 +59,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     } //Erster Gründer Test ende
 
+
 }
 
