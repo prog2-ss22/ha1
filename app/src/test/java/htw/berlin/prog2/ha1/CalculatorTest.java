@@ -69,6 +69,18 @@ class CalculatorTest {
         String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("Should display only one dot instead of two. Only one after the first number")
+    void testPressDotKey(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.readScreen();
+        String expected = "3.5";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
