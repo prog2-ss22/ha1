@@ -71,5 +71,21 @@ void testPercentage() {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("Divided by zero")
+    void testDividedByZero() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
