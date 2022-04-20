@@ -97,10 +97,11 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+
     }
 
     @Test
-    @DisplayName("should display result after dividing two negative multi-digit numbers")
+    @DisplayName("should display result after dividing one negative and one positive multi-digit numbers")
     void testNegativeDivision() {
         Calculator calc = new Calculator();
 
@@ -108,15 +109,16 @@ class CalculatorTest {
         calc.pressDigitKey(2);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
-        calc.pressNegativeKey();
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "2";
+
+        String expected = "-2";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+        System.out.println(actual);
     }
 }
 
