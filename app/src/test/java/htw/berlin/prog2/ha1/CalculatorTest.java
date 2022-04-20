@@ -41,8 +41,29 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
-    //hier möchte ich meine Testfall hinschreiben
 
-    
+    @Test
+    @DisplayName("should show the result after multiplying the two point five by four")
+    void testDecimalPointMultiplication() {
+        Calculator calc = new Calculator();
+
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+
+
+
 }
 
