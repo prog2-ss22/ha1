@@ -62,7 +62,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after subtracting two positive multi-digit numbers")
+    @DisplayName("should display the result of the one value by the power of the following")
     void testPotenzen()  {
         Calculator calc = new Calculator();
 
