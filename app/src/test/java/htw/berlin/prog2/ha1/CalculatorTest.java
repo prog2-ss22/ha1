@@ -76,5 +76,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("Should display the natural Log Ln from the number")
+    void testLnX()  {
+        Calculator calc = new Calculator();
+
+        calc.pressUnaryOperationKey("ln");
+        calc.pressDigitKey(11);
+        calc.pressEqualsKey();
+
+        String expected = "2.3978952728";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
