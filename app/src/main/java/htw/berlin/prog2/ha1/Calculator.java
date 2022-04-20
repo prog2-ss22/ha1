@@ -97,7 +97,11 @@ public class Calculator {
      */
 
 
-    public void pressDotKey() { if(!screen.endsWith(".")) screen = screen + ".";}
+    public void pressDotKey() //{ if(!screen.endsWith(".")) screen = screen + ".";}
+
+    // Bugfix für 2. Rote Test
+
+    { if(!screen.contains(".")) screen = screen + ".";}
 
 
     /**

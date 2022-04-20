@@ -82,7 +82,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display  be one dot")
-    void testDotKey() {
+    void testDoubleDotKey() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(7);
