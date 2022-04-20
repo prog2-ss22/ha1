@@ -8,6 +8,9 @@ package htw.berlin.prog2.ha1;
  */
 public class Calculator {
 
+    // neu (für testAdditionAfterClearing()):
+    private int numberClearKeyPressed = 0;
+
     private String screen = "0";
 
     private double latestValue;
@@ -29,6 +32,10 @@ public class Calculator {
      * @param digit Die Ziffer, deren Taste gedrückt wurde
      */
     public void pressDigitKey(int digit) {
+
+        // neu (für testAdditionAfterClearing()):
+        numberClearKeyPressed = 0;
+
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
@@ -45,9 +52,21 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
-        screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
+        // neu (für testAdditionAfterClearing()):
+        numberClearKeyPressed += 1;
+
+        if (numberClearKeyPressed == 1) {
+            System.out.println("Hallo " + numberClearKeyPressed);
+            screen = "0";
+        }
+
+
+        if (numberClearKeyPressed == 2) {
+            System.out.println("Hallo " + numberClearKeyPressed);
+            screen = "0";
+            latestOperation = "";
+            latestValue = 0.0;
+        }
     }
 
     /**
@@ -117,15 +136,30 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+        double screenValue = Double.parseDouble(screen);
+
         var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "+" -> latestValue + screenValue;
+            case "-" -> latestValue - screenValue;
+            case "x" -> latestValue * screenValue;
+            case "/" -> latestValue / screenValue;
+            case ""  -> 0.0;
             default -> throw new IllegalArgumentException();
         };
+        //
+
         screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        if(screen.endsWith(".0"))
+            screen = screen.substring(0,screen.length()-2);
+
+        if(screen.contains(".") && screen.length() > 11)
+            screen = screen.substring(0, 10);
+
+        // neu (für testDivisionZero):
+        if(latestOperation == "/" && screenValue == 0.0) {
+            screen = "Error";
+        }
     }
 }
