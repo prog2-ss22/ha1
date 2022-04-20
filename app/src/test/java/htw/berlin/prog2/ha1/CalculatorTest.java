@@ -115,7 +115,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
     @Test
-    @DisplayName("should display result after divining by zero")
+    @DisplayName("should display result after dividing by zero")
     void testdividedbyzero() {
         Calculator calc = new Calculator();
 
