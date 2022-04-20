@@ -54,11 +54,11 @@ class CalculatorTest {
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(6);
+        calc.pressEqualsKey();
 
         String expected = "6";
         String actual = calc.readScreen();
 
-        calc.pressEqualsKey();
         assertEquals(expected, actual);
     }
     //TODO Aufgabe 2
@@ -73,30 +73,27 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
 
         String expected = "25";
         String actual = calc.readScreen();
 
-        calc.pressEqualsKey();
         assertEquals(expected,actual);
     }
     @Test
     @DisplayName("should display result after deviding 2.5 in 2")
-    void testDoubleValues(){
+    void test0division() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressDotKey();
-        calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
 
-        String expected = "1.25";
+        String expected = "Error";
+        calc.pressEqualsKey();
         String actual = calc.readScreen();
 
-        calc.pressEqualsKey();
         assertEquals(expected, actual);
     }
-    //TODO Aufgabe 3
 }
 
