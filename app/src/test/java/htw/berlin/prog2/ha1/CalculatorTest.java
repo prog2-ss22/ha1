@@ -109,6 +109,8 @@ class CalculatorTest {
 
 
         }
+ @@public void press String expected () {
 
+            if(screen.endWith("22") screen= "0")
 }
 
