@@ -84,8 +84,7 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(2);
         calc.pressEqualsKey();
-
-        String expected = "4";
+        String expected = "-4";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
