@@ -63,7 +63,8 @@ class CalculatorTest {
     void testDivideByZero() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(10);
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
