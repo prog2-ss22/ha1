@@ -41,7 +41,7 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
-    //Teilaufgabe 1
+    //Teilaufgabe 1: 2 grüne Tests
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testNegativeOperation() {
@@ -59,54 +59,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    //Zusätzliche Tests
-    @Test
-    @DisplayName("should display result after getting the square root of two")
-    void testClearOperation() {
-        Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
-        calc.pressDigitKey(1);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(9);
-        calc.pressEqualsKey();
-        calc.pressClearKey();
-        String expected = "0";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    @DisplayName("should display result after getting the square root of two")
-    void testNegativeKey() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(9);
-        calc.pressNegativeKey();
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(7);
-        calc.pressEqualsKey();
-        String expected = "-63";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-   // @Test
-    //@DisplayName("should display result after getting the square root of two")
-    //void testDotKey() {
-   //Calculator calc = new Calculator();
-
-        //calc.pressDigitKey(8);
-       // calc.pressDotKey();
-      //  calc.pressDigitKey(4);
-      //  calc.pressUnaryOperationKey("1/x");
-        //String expected = "0.11904762"; //0.11904762 über des Online-Rechners
-       // String actual = calc.readScreen();
-
-       // assertEquals(expected, actual);
-    //}
-
-    //Teilaufgabe 2 und 3
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testPercentage() {
@@ -116,25 +69,7 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressUnaryOperationKey("%");
 
-        String expected = "0.1";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    @DisplayName("should display result after getting the square root of two")
-    void testDivision() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(6);
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(7);
-
-        calc.pressEqualsKey();
-
-        String expected = "3,82352941";
+        String expected = "0.15";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
