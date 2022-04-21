@@ -78,7 +78,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-/*
+
     @Test
     @DisplayName("Aufgabe 2.2")
     void multipleDotsError(){
@@ -96,6 +96,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-*/
+
 }
 
