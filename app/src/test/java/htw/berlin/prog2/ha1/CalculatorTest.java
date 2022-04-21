@@ -74,5 +74,15 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("wenn man pressDigit benutzt und dann pressEquals benutzt, ohne vorher noch einen operator zu benutzen, dann bekommt man einen fehler. In der online version wird einfach der latest value angezeigt")
+    void testEqualsWithoutOperation() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        String expected = "3";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
