@@ -6,6 +6,8 @@ package htw.berlin.prog2.ha1;
  * und dessen Bildschirm bis zu zehn Ziffern plus einem Dezimaltrennzeichen darstellen kann.
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
+
+
 public class Calculator {
 
     private String screen = "0";
@@ -83,6 +85,17 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
+        /**
+         * Um den ersten Fehler zu lösen gibt das System ein "Error"
+         * Es kann keine Wurzel aus NUll oder negativen Zahlen gezogen werden
+         */
+
+
+        if(latestOperation.equals("√") && latestValue < 1){
+            screen = "Error";
+            return;
+        }
+
     }
 
     /**
@@ -117,15 +130,35 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+
+
             default -> throw new IllegalArgumentException();
+
+
+
         };
+
+
+
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        /**
+         * Um den Feheler Nummer 1 zu läsen wird ein "Error" ausgeben wenn die Operation "/" und screen "Infinity" ausgibt
+         */
+
+         if(latestOperation.equals("/") && screen.equals("Infinity")){
+         screen = "Error";
+         return;
+         }
     }
 }
