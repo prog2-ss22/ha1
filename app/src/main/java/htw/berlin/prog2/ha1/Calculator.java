@@ -2,7 +2,7 @@ package htw.berlin.prog2.ha1;
 
 /**
  * Eine Klasse, die das Verhalten des Online Taschenrechners imitiert, welcher auf
- * https://www.online-calculator.com/ aufgerufen werden kann (ohne die Memory-Funktionen)
+ * <a href="https://www.online-calculator.com/">https://www.online-calculator.com/</a> aufgerufen werden kann (ohne die Memory-Funktionen)
  * und dessen Bildschirm bis zu zehn Ziffern plus einem Dezimaltrennzeichen darstellen kann.
  * Enthält mit Absicht noch diverse Bugs oder unvollständige Funktionen.
  */
@@ -82,7 +82,7 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
+        if(screen.contains("Infinity")) screen = ("Error");
     }
 
     /**
@@ -93,7 +93,7 @@ public class Calculator {
      * Beim zweimaligem Drücken, oder wenn bereits ein Trennzeichen angezeigt wird, passiert nichts.
      */
     public void pressDotKey() {
-        if(!screen.endsWith(".")) screen = screen + ".";
+        if(!screen.contains(".")) screen = screen + ".";
     }
 
     /**

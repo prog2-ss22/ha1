@@ -41,5 +41,61 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("Aufgabe 1")
+    void multiplyWithFloats() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(4);
+
+        calc.pressBinaryOperationKey("x");
+
+        calc.pressDigitKey(4);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+
+        calc.pressEqualsKey();
+
+        String expected = "10.08";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Aufgabe 2.1")
+    void errorInInversion(){
+        Calculator calc = new Calculator();
+
+        calc.pressUnaryOperationKey("1/x");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("Aufgabe 2.2")
+    void multipleDotsError(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.0222";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
