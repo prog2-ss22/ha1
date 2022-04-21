@@ -120,7 +120,8 @@ public class Calculator {
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen) ;
+            case "x" -> latestValue * Double.parseDouble(screen) * latestValue ;
+//
             case "/" -> latestValue / Double.parseDouble(screen);
 
             default -> throw new IllegalArgumentException();
