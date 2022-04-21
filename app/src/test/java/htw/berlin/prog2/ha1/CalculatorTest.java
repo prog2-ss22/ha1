@@ -78,5 +78,19 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // second red test
+    @Test
+    @DisplayName("should display number without floating point ")
+    void testUnnamed() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
