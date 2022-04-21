@@ -40,6 +40,23 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    //1. grüner test
+    @Test
+    @DisplayName("should display result after split two positive multi-digit numbers")
+    void testAddition() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(4);
+
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
