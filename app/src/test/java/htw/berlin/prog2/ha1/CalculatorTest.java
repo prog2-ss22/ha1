@@ -77,7 +77,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-/*
+
     // 2.
     @Test
     @DisplayName("should display Error after 1/0")
@@ -97,7 +97,7 @@ class CalculatorTest {
 
 
 
-
+/*
 //2
 
     @Test
