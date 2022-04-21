@@ -39,6 +39,54 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("")
+    void NegativeSubtracting(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+        String expected = "1";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("")
+
+    void test2(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected ="Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("")
+
+    void test3(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(8);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        System.out.println(calc.readScreen());
+
+        String expected = "21";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
 
     //TODO hier weitere Tests erstellen
 }
