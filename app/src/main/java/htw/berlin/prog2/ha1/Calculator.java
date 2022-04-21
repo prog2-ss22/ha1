@@ -83,6 +83,9 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
+        if(latestOperation.equals("√") && screen.equals("NaN")) {
+            screen = "Error";
+        }
     }
 
     /**
@@ -125,7 +128,15 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        if(screen.endsWith(".0"))
+            screen = screen.substring(0,screen.length()-2);
+
+        if(screen.contains(".") && screen.length() > 11)
+            screen = screen.substring(0, 10);
+
+        if(latestOperation.equals("/") && screen.equals("Infinity")) {
+            screen = "Error";
+        }
     }
 }
