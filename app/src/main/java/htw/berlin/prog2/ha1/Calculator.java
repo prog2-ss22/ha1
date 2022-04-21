@@ -67,7 +67,9 @@ public class Calculator {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
 
-       
+        if (latestOperation.equals("/") && screen.equals("0")) {
+            screen = "error"; 
+        }
     }
 
     /**
@@ -140,7 +142,7 @@ public class Calculator {
     public void pressDoubleEqualsKey() {
         
         var result = switch(latestOperation) {
-            case "+" -> pressEqualsKey(screen) + Double.parseDouble(screen) );
+            case "+" -> Double.parseDouble(screen) + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
