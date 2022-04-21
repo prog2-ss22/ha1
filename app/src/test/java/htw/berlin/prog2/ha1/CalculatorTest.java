@@ -40,6 +40,78 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should operate the percent function")
+    void ProzentFunction() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should operate the percent function + ")
+    void ProzentFunctionTimes() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressDotKey();
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%%");
+
+
+        String expected = "0.16";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Display out the 1/x Operation")
+
+    void XFunktion(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "0.33333333";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("+/- Taste am anfang drücken")
+
+    void MinusFunktion(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+
+
+
+        String expected = "-31";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
 

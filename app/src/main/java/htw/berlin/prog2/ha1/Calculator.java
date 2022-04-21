@@ -31,9 +31,14 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0")) screen = "";
 
-        screen = screen + digit;
+        if(latestOperation.isEmpty()) {
+            screen = screen + digit;
+        } else {
+            latestValue = Double.parseDouble(screen);
+            screen = Integer.toString(digit);
+        }
     }
 
     /**
@@ -77,6 +82,7 @@ public class Calculator {
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
+            case "%%" -> latestValue / 10 * latestValue / 10;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
