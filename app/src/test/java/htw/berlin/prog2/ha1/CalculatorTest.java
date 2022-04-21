@@ -63,14 +63,14 @@ class CalculatorTest {
     @Test
     @DisplayName("should display error after getting division by zero")
 
-    public static void testZeroDivision(){
+     void testZeroDivision(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(1);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("/");
-        calc.pressEqualsKey();
         calc.pressDigitKey(0);
+        calc.pressEqualsKey();
 
         String expected = "error";
         String actual = calc.readScreen();
@@ -80,7 +80,7 @@ class CalculatorTest {
     @Test
     @DisplayName("should display error after getting the square root of zero")
 
-    public static void testRootDivisionWithZero(){
+     void testRootDivisionWithZero(){
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(0);
