@@ -122,10 +122,13 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "1/x" -> 1 / Double.parseDouble(screen);  // 1. Fix zu Teilaufgabe 3
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+        //if(screen.equals("Infinity")) screen = "error";
+        if (screen.contains("Infinity")) screen = "error" ; // 2.Fix zu Teilaufgabe 3
     }
 }

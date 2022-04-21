@@ -26,6 +26,8 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testSquareRoot() {
@@ -70,7 +72,7 @@ class CalculatorTest {
      * Fehlergrund Zahlen vertauscht in calc.pressDigitKey Methoden in Zeilen 79 und 81, statt 6-5, 5-6 wodurch das Ergebnis -1 wird
      */
 
-    /**
+/**
     @Test
     @DisplayName("should display result after subtracting two positive digit numbers")
     void testF1PositiveSubtraction() {
@@ -86,7 +88,10 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    */
+
+/*
+
+
 
     /**
      *
@@ -94,9 +99,11 @@ class CalculatorTest {
      * alter falscher Testcode wurde auskommentiert und neu gefixter Code wird darunter eingefügt
      * Zeile 102 und 104(ursprünglich Zeile 79 und 81 beim auskommentierten code werden vertauscht
      */
+
+/**
     @Test
     @DisplayName("should display result after subtracting two positive digit numbers")
-    void testF1PositiveSubtraction() {
+    void testF2PositiveSubtraction() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(6);
@@ -109,6 +116,9 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+*/
+
 
 
 
@@ -119,21 +129,30 @@ class CalculatorTest {
  *
  */
 
-   // @Test
-   // @DisplayName("should display result after subtracting two positive digit numbers")
-    //void testF2PositiveSubtraction() {
-    //    Calculator calc = new Calculator();
+/**
+    @Test
+    @DisplayName("should display result after subtracting two positive digit numbers")
+    void testF3PositiveSubtraction() {
+        Calculator calc = new Calculator();
 
-     //   colc.pressDigitKey(6);
-     //  calc.pressBinaryOperationKey("-");
-     //   calc.pressDigitKey(5);
-     //   calc.pressEqualsKey();
+        colc.pressDigitKey(6);
+       calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
 
-     //   String expected = "1";
-     //   String actual = calc.readScreen();
+        String expected = "1";
+        String actual = calc.readScreen();
 
-      //  assertEquals(expected, actual);
-   // }
+        assertEquals(expected, actual);
+    }
+
+*/
+
+
+
+
+
+
 
     /**Letzter Teil der Aufgabe : zweiter Bugfix
      * vorherhiger Code wird zum Vergleich auskommentiert mit // statt JavaDoc Methode um zu prüfen ob kommentieren genauso klappt
@@ -141,9 +160,10 @@ class CalculatorTest {
      * colc.pressDigitKey(6); in Zeile 149 wird das o in a geändert zu calc.pressDigitKey(6);
      */
 
+/**
     @Test
     @DisplayName("should display result after subtracting two positive digit numbers")
-    void testF2PositiveSubtraction() {
+    void testF4PositiveSubtraction() {
     Calculator calc = new Calculator();
 
     calc.pressDigitKey(6);
@@ -156,6 +176,59 @@ class CalculatorTest {
 
     assertEquals(expected, actual);
     }
+
+
+*/
+
+    /**
+     * Teilaufgabe 2
+     *
+     */
+
+
+    @Test
+    @DisplayName("Kehrwert anzeigen (fix in Zeile 125 in calculator class)")
+    void testRoot() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("1/x");
+        calc.pressEqualsKey();
+
+        String expected = "0.125";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+    @Test
+    @DisplayName("sollte anstatt Infinity, error ausgeben nachdem man 1 durch 0 teilt (Fix Zeile 132)")
+    void testF5division() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+// 1/ 0 = error
+
+    // %
+    //
+    //am anfang rot
+   //// infinity
+
+
+
+
 
 
 }
