@@ -58,5 +58,28 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    // 1.roter Test
+
+    @Test
+    @DisplayName("should display result after subtract two postive multi-digit-numbers")
+    void testsubtraction() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(8);
+
+        calc.pressEqualsKey();
+
+        String expected = "36";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
 
