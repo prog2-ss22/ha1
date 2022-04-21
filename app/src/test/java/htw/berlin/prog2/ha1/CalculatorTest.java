@@ -41,7 +41,7 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
-    //Teilaufgabe 1
+    //Teilaufgabe 1: 2 grüne Tests
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testNegativeOperation() {
@@ -60,7 +60,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //Teilaufgabe 2 erster roter Test
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testPercentage() {
@@ -70,7 +69,7 @@ class CalculatorTest {
         calc.pressDigitKey(5);
         calc.pressUnaryOperationKey("%");
 
-        String expected = "0.1";
+        String expected = "0.15";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
