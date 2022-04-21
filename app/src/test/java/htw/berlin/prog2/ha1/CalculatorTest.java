@@ -39,7 +39,53 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    void TestMultiplizieren() {
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "400";
+        String actual = calc.readScreen();
+
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    void TestPlusMinus(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "20";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+
+    }
+    @Test
+    void Test(){
+
+
+
+
+     }
     //TODO hier weitere Tests erstellen
 }
 
