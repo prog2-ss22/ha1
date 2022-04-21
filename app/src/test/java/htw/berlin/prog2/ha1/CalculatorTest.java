@@ -91,7 +91,7 @@ class CalculatorTest {
 
     }
     @Test
-    @DisplayName("+/- Taste am angang drücken")
+    @DisplayName("+/- Taste am anfang drücken")
 
     void MinusFunktion(){
 
@@ -101,11 +101,12 @@ class CalculatorTest {
         calc.pressDigitKey(3);
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
         calc.pressEqualsKey();
 
 
-        String expected = "-7.0";
+
+        String expected = "-31";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
