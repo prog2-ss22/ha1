@@ -122,6 +122,8 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "^" -> Math.pow(latestValue,Double.parseDouble(screen)); // Fix for testExponentiation()
+            case "log" -> Math.log10(Double.parseDouble(screen)); //Fix for testLog()
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
