@@ -26,12 +26,13 @@ public class Calculator {
      * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
-     * @param digit Die Ziffer, deren Taste gedrückt wurde
+     * @param digit Die Ziffer, deren Taste gedrückt wurde.
+     *  .
      */
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen) && !screen.equals("-0")) screen = "";
 
         screen = screen + digit;
     }
@@ -70,15 +71,27 @@ public class Calculator {
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
+     *
      */
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+        double result = 0.0;
+
+        switch(operation) {
+            case "√":
+                result = Math.sqrt(Double.parseDouble(screen));
+                break;
+
+            case "%" :
+                result = Double.parseDouble(screen) / 100;
+            break;
+
+            case "1/x":
+                result = 1 / Double.parseDouble(screen);
+            break;
+
+            default : throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
@@ -100,11 +113,17 @@ public class Calculator {
      * Empfängt den Befehl der gedrückten Vorzeichenumkehrstaste ("+/-").
      * Zeigt der Bildschirm einen positiven Wert an, so wird ein "-" links angehängt, der Bildschirm
      * aktualisiert und die Inhalt fortan als negativ interpretiert.
+     * Wenn der Wert 0 auf den Bildschirm gezeigt ist und latestOperation ist nicht gleich + oder -, dann es muss -0 auf den
+     * Bildschirm gezeigt.
      * Zeigt der Bildschirm bereits einen negativen Wert mit führendem Minus an, dann wird dieses
      * entfernt und der Inhalt fortan als positiv interpretiert.
      */
     public void pressNegativeKey() {
-        screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        if (screen.equals("0")  || latestOperation != "+"|| latestOperation != "-") {
+            screen = "-0";
+        }else {
+            screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+        }
     }
 
     /**
@@ -112,20 +131,40 @@ public class Calculator {
      * Wurde zuvor keine Operationstaste gedrückt, passiert nichts.
      * Wurde zuvor eine binäre Operationstaste gedrückt und zwei Operanden eingegeben, wird das
      * Ergebnis der Operation angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
+     * Hier wird Error auf den Bildschirm gezeigt wenn mann geteilt durch null.
      * Wird die Taste weitere Male gedrückt (ohne andere Tasten dazwischen), so wird die letzte
      * Operation (ggf. inklusive letztem Operand) erneut auf den aktuellen Bildschirminhalt angewandt
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
-        var result = switch(latestOperation) {
-            case "+" -> latestValue + Double.parseDouble(screen);
-            case "-" -> latestValue - Double.parseDouble(screen);
-            case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
+        double result = 0.0;
+        boolean isError= false;
+        switch(latestOperation) {
+            case "+":
+                result = latestValue + Double.parseDouble(screen);
+                break;
+            case "-":
+                result =latestValue - Double.parseDouble(screen);
+                break;
+            case "x" :
+                result =latestValue * Double.parseDouble(screen);
+                break;
+            case "/" :
+                if(screen.equals("0")){
+                    isError= true;
+                }else{
+                    result =latestValue / Double.parseDouble(screen);
+                }
+
+                break;
+            default: throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        if(isError == true ){
+            screen = "Error";
+        }
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
     }
 }
