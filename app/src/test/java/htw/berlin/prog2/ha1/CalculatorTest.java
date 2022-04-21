@@ -73,5 +73,44 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    @Test
+    @DisplayName("Display out the 1/x Operation")
+
+    void XFunktion(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressUnaryOperationKey("1/x");
+
+
+        String expected = "0.33333333";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+    @Test
+    @DisplayName("+/- Taste am angang drücken")
+
+    void MinusFunktion(){
+
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+
+        String expected = "-7.0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
 }
 
