@@ -74,6 +74,20 @@ class CalculatorTest {
 
     }
 
+    @Test
+    @DisplayName("should display result after getting the square root of two")
+    void testSquareRoot3() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String actual = calc.readScreen();
+        String expected = "Error";
+        assertEquals(expected, actual);
+    }
+
 
 }
 
