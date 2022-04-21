@@ -112,6 +112,12 @@ public class Calculator {
         char root = (char) Math.sqrt(Double.parseDouble(screen));
         return root;
     }
+    public double calculatingPercent() {
+        double number = Double.parseDouble(screen);
+        double result = number / 100;
+        return result;
+    }
+
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
      * Wurde zuvor keine Operationstaste gedrückt, passiert nichts.
@@ -128,6 +134,7 @@ public class Calculator {
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
             case "√" -> sqrt();
+            case "%" -> calculatingPercent();
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
