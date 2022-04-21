@@ -101,7 +101,24 @@ class CalculatorTest {
         calc.pressDotKey();
         calc.pressDigitKey(4);
         calc.pressUnaryOperationKey("1/x");
-        String expected = "o.11904762"; //0.11904762 über des Online-Rechners
+        String expected = "0.11904762"; //0.11904762 über des Online-Rechners
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after multiplying 3 digits.")
+    void testDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "50";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
