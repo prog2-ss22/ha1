@@ -41,5 +41,63 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    //1. Teilaufgabe
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositiveDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //2. Teilaufgabe
+
+    //1. rote Test
+    @Test
+    @DisplayName("should display  Error String if a number is divided by 0")
+    void testDivisionNull() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //2. rote Test
+
+    @Test
+    @DisplayName("should display  be one dot")
+    void testDoubleDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+
+        String expected = "7.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
 }
 
