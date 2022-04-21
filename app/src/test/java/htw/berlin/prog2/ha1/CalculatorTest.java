@@ -60,7 +60,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after Percent one negativ singel-digit numbers")
-    void testPositivePercent() {
+    void testSquareRoot1() {
         Calculator calc = new Calculator();
         calc.pressDigitKey(2);
         calc.pressNegativeKey();
@@ -72,8 +72,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after Percent one negativ singel-digit numbers")
-    void testPositivePercent1() {
+    @DisplayName("should display result after Division two positive multi-digit numbers")
+    void testPositiveDivision() {
         Calculator calc = new Calculator();
 
 
