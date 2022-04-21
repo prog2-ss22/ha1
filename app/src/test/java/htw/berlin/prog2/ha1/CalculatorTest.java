@@ -131,6 +131,7 @@ class CalculatorTest {
         assertThrows(IllegalArgumentException.class, () -> calc.pressUnaryOperationKey("√"));
     }
 
+    //test
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testFailureSquareRoot() {
