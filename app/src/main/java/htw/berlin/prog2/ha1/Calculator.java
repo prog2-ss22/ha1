@@ -130,7 +130,7 @@ public class Calculator {
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
             case "^" -> Math.pow(latestValue, Double.parseDouble(screen));
-            //case "√n" -> Math.pow(latestValue, 1/Double.parseDouble(screen));
+            case "√n" -> Math.pow(latestValue, 1/Double.parseDouble(screen));
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
