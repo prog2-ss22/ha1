@@ -41,18 +41,20 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after multiply two negativ Numbers")
-    void testNegativMultiply() {
+    @DisplayName("should display result after multiply two decimals")
+    void testDecimalsMultiply() {
         Calculator calc = new Calculator();
 
-        calc.pressNegativeKey();
         calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("x");
-        //calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
-        String expected = "25";
+        String expected = "13";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
