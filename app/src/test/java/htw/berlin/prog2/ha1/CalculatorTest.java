@@ -57,5 +57,18 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display same digit after pressing Equals without an operation")
+    void calculatorCanDoFourEquals() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
