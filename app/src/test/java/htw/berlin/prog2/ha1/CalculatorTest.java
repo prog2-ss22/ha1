@@ -96,7 +96,7 @@ class CalculatorTest {
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "No";
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
