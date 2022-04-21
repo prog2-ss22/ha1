@@ -107,6 +107,24 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    
+    @Test
+    @DisplayName("Should allow to calculate with pi")
+    void testPi()  {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressUnaryOperationKey("π");
+        calc.pressEqualsKey();
+
+        String expected = "6.283185307179586";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 
 }
 

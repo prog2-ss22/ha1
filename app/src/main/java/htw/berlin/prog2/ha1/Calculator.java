@@ -79,6 +79,8 @@ public class Calculator {
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
             case "ln" -> Math.log(Double.parseDouble(screen));
+            case "sin" -> Math.sin(latestValue);
+            //case "π" -> Math.PI;
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
