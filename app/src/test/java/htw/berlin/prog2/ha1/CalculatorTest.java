@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Retro calculator")
 class CalculatorTest {
-//test neu
+
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositiveAddition() {
@@ -39,7 +39,20 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // grüner Test Teilaufgabe 1
+    @Test
+    @DisplayName("should clear screen after pressing clear button")
+    void testClearScreen() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(9);
+        calc.pressClearKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 }
 
