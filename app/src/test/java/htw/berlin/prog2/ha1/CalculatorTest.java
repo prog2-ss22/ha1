@@ -75,7 +75,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-
+*/
 
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
@@ -92,17 +92,15 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-*/
+
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
     void testPositivemios() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("p");
+        calc.pressDigitKey(3);
         calc.pressEqualsKey();
 
         String expected = "125";
