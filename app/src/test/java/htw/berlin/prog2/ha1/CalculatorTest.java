@@ -39,7 +39,43 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // First green test
+    @Test
+    @DisplayName("should display result after multiplying two numbers")
+    void calculatorIsAbleToMultiply() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        assertEquals("16", calc.readScreen());
+    }
+    // First red test
+    @Test
+    @DisplayName("should display result after taking root from a number")
+    void testTakingRoots() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("√");
+        calc.pressEqualsKey();
+
+        assertEquals("3", calc.readScreen());
+    }
+    //Second red test
+    @Test
+    @DisplayName("should display result after calculating a number in percent")
+    void testCalculatingPercent() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        assertEquals("0.1",calc.readScreen());
+    }
+
 }
 
