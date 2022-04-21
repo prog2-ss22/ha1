@@ -83,8 +83,8 @@ class CalculatorTest {
     void testMultiplyNegativeAndPositive() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
         calc.pressDigitKey(5);
+        calc.pressNegativeKey();
         calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
@@ -109,6 +109,22 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
         String expected = "5000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //RED TEST
+    @Test
+    @DisplayName("Should display Error when dividing with 0")
+    void testDisplayError() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
