@@ -69,7 +69,7 @@ class CalculatorTest {
     }
 
 
-
+/**
     //Aufgabe 2
     @Test
     @DisplayName("Division")
@@ -89,7 +89,7 @@ class CalculatorTest {
     /**
      * Eine mathematische Regel besagt das nicht durch Null dividiert werden darf
      * bei der Division mit Null ein Error
-     */
+
 
     @Test
     @DisplayName("es sollte bei der Division durch Null ein Error ausgeben werden")
@@ -111,7 +111,7 @@ class CalculatorTest {
     /**
      * In der Mathematik kann aus einer negativen Zahl keine Wurzel gezogen werden
      * bei dem online Calculator wird ein Error bei der Rechnung mit einer negativen Zahl ausgegeben
-     */
+
 
     @Test
     @DisplayName("Wurzel aus einer Minus zahl")
@@ -128,7 +128,7 @@ class CalculatorTest {
 
 
         assertEquals(expected, actual);
-    }
+    }*/
 
 
 
