@@ -9,17 +9,18 @@ package htw.berlin.prog2.ha1;
 public class Calculator {
 
     private String screen = "0";
-
+// 2.2.22
     private double latestValue;
 
     private String latestOperation = "";
-
+    private String negSign = "";
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
     public String readScreen() {
 
         if(screen.equals("Infinity")) screen = "Error";
+        String gespeichertMinus;
         return screen;
     }
 
@@ -109,6 +110,7 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+       //
     }
 
     /**
