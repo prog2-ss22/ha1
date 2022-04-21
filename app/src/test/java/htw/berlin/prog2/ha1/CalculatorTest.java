@@ -41,19 +41,107 @@ class CalculatorTest {
     }
 
     @Test
+    @DisplayName("should display result with '.' after dividing 1 by 2")
+    void testDividing() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "0.5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    
+    @Test
+    @DisplayName("should display 'error' after dividing by 0")
+    void testDividingBy0() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
     @DisplayName("should display results after addition two positive numbers and repeating the operation by using '=' ")
     void testDoubleEquals() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(1);
-        calc.pressEqualsKey();
-        calc.pressEqualsKey();
+        calc.pressDigitKey(1);      // 2+1
+        calc.pressEqualsKey();      // =3  |+1
+        calc.pressDoubleEqualsKey();      // =4  
 
         String expected = "4";
         String actual = calc.readScreen();
 
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should only clear the latest digit whithout deleting the whole sentence")
+    void testClearKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should only clear the latest digit whithout the whole sentence")
+    void testClearKey2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressClearKey();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+        
+
+        String expected = "5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should show the result of addition as negative number")
+    void testPressNegativeKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+        calc.pressNegativeKey();
+
+        String expected = "-2";
+        String actual = calc.readScreen();
         assertEquals(expected, actual);
     }
 }
