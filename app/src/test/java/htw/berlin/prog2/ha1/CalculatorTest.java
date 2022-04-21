@@ -59,17 +59,15 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after substracting two negative numbers")
-    void testNegativeSubstitution() {
+    @DisplayName("should display Error after pulling negative square root")
+    void testNegativeRoot() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
-        calc.pressEqualsKey();
+        calc.pressDigitKey(2);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
 
-        String expected = "-6";
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
