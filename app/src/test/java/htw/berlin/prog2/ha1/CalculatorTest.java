@@ -40,6 +40,47 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("")
+
+    void testMult(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected ="4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+    @Test
+    @DisplayName("Should display result after divide a number by zero")
+    void testPressEqualsKey(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(9);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.readScreen();
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("Should display only one dot instead of two. Only one after the first number")
+    void testPressDotKey(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressDotKey();
+        calc.pressDigitKey(5);
+        calc.pressDotKey();
+        calc.readScreen();
+        String expected = "3.5";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
