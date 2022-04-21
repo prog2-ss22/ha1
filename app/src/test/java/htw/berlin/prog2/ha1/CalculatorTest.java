@@ -48,10 +48,27 @@ class CalculatorTest {
         calc.pressNegativeKey();
         calc.pressDigitKey(5);
         calc.pressBinaryOperationKey("x");
+        //calc.pressNegativeKey();
         calc.pressDigitKey(5);
         calc.pressEqualsKey();
 
         String expected = "25";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display Error after divide by 0")
+    void testDivideByZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(10);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
