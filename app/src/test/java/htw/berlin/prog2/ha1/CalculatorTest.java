@@ -63,7 +63,19 @@ class CalculatorTest {
 
         assertEquals("3", calc.readScreen());
     }
+    //Second red test
+    @Test
+    @DisplayName("should display result after calculating a number in percent")
+    void testCalculatingPercent() {
+        Calculator calc = new Calculator();
 
-    //TODO hier weitere Tests erstellen
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        assertEquals("0.1",calc.readScreen());
+    }
+
 }
 
