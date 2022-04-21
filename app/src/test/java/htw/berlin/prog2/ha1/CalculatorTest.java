@@ -79,12 +79,10 @@ class CalculatorTest {
     void testDelete() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(10);
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(0);
-        calc.pressEqualsKey();
+        calc.pressNegativeKey();
+        calc.pressDigitKey(5);
 
-        String expected = "0";
+        String expected = "-5";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
