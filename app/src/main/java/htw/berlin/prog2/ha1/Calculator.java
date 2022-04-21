@@ -20,7 +20,7 @@ public class Calculator {
     public String readScreen() {
 
         if(screen.equals("Infinity")) screen = "Error";
-        String gespeichertMinus;
+
         return screen;
     }
 
