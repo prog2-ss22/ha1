@@ -76,16 +76,16 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display number after pressing percent Button")
-    void testPercent(){
+    @DisplayName("should display ERROR after getting square root of a negative number")
+    void testNegativSquareRoot(){
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("%");
-        calc.pressEqualsKey();
 
-        String expected = "0.1";
+        calc.pressDigitKey(5);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
