@@ -77,6 +77,7 @@ public class Calculator {
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
+            case "%%" -> latestValue / 10 * latestValue / 10;
             case "1/x" -> 1 / Double.parseDouble(screen);
             default -> throw new IllegalArgumentException();
         };
