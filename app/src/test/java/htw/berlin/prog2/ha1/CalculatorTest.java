@@ -84,8 +84,26 @@ class CalculatorTest {
       @@public void pressBinaryOperationKey() {
 
           if(screen.endWith("+") screen= "-")
+//2.roter test
+      @Test
+      @DisplayName("should display ´0´ result after multiply by zero")
+      void testmultiplication() (
+              Calculator calc= new Calculator()
+            calc.pressDigitKey(2);
+            calc.pressDigitKey(1);
+            calc.pressBinaryOperationKey("*");
+            calc.pressDigitKey(0);
+            calc.pressDigitKey();
+
+            calc.pressEqualsKey();
+
+            String expected = "22";
+            String actual = calc.readScreen();
+
+            assertEquals(expected, actual);
 
 
+                    )
 
 
 
