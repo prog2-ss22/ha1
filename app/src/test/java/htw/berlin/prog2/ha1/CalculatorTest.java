@@ -75,5 +75,21 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    //zweiter Roter Test: Wurzel einer negativen Zahl
+    @Test
+    @DisplayName("should display result after getting the square root of a negative digit number")
+    void testSquareRootNegative() {
+        Calculator calc = new Calculator();
+
+        calc.pressNegativeKey();
+        calc.pressDigitKey(2);
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
