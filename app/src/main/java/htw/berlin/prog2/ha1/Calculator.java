@@ -31,7 +31,7 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "" ;
 
         screen = screen + digit;
     }
@@ -57,6 +57,10 @@ public class Calculator {
      * Rechner in den passenden Operationsmodus versetzt.
      * Beim zweiten Drücken nach Eingabe einer weiteren Zahl wird direkt des aktuelle Zwischenergebnis
      * auf dem Bildschirm angezeigt. Falls hierbei eine Division durch Null auftritt, wird "Error" angezeigt.
+     * Zusätzlich kann die Potenz einer Zahl errechnet werden. Hierbei ist die zweite Zahl die eingegeben wird der
+     * Exponent.
+     * Zusätzlich kann die n-te Wurzel einer Zahl gezogen werden. Hierbei ist die zweite Zahl die eingebgeben wird
+     * n.
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
@@ -78,6 +82,9 @@ public class Calculator {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+            //case "ln" -> Math.log(Double.parseDouble(screen));
+            //case "sin" -> Math.sin(latestValue);
+            //case "π" -> Math.PI;
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
@@ -122,10 +129,25 @@ public class Calculator {
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
             case "/" -> latestValue / Double.parseDouble(screen);
+            case "^" -> Math.pow(latestValue, Double.parseDouble(screen));
+            case "√n" -> Math.pow(latestValue, 1/Double.parseDouble(screen));
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
     }
+
+    /**
+     * Leider funktioniert diese Methode nicht - sie sollte jedoch ähnlich wie die pressDigitKey-Methode statt einer
+     * Ziffer die Zahl PI auf den Bildschirm setzen.
+     * Jedoch scheint es hier eine Exception zu geben die ich nicht ganz nachvollziehen kann.
+     */
+    public void pressPiKey() {
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "" ;
+
+        screen = screen + 3.141592653589793;
+    }
+
+
 }
