@@ -126,6 +126,27 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    @DisplayName("Hiermit sollte die n-te Wurzel aus Werten gezogen werden können.")
+    void testNteWurzel()  {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("√n");
+        calc.pressDigitKey(1);
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+
+
+
+
 
 
 
