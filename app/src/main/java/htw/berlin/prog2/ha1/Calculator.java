@@ -15,7 +15,7 @@ public class Calculator {
     private String latestOperation = "";
 
     /**
-     * @return den aktuellen Bildschirminhalt als String
+     * @return den aktuellen Bildschirminhalt... als String
      */
     public String readScreen() {
         return screen;
@@ -74,17 +74,22 @@ public class Calculator {
     public void pressUnaryOperationKey(String operation) {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
-        var result = switch(operation) {
-            case "√" -> Math.sqrt(Double.parseDouble(screen));
-            case "%" -> Double.parseDouble(screen) / 100;
-            case "1/x" -> 1 / Double.parseDouble(screen);
-            default -> throw new IllegalArgumentException();
-        };
-        screen = Double.toString(result);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
+        if (screen.startsWith("-") && operation.equals("√")) {
+            screen = "Error";
+        } else {
+
+            var result = switch (operation) {
+                case "√" -> Math.sqrt(Double.parseDouble(screen));
+                case "%" -> Double.parseDouble(screen) / 100;
+                case "1/x" -> 1 / Double.parseDouble(screen);
+                default -> throw new IllegalArgumentException();
+            };
+            screen = Double.toString(result);
+            if (screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+        }
     }
-
     /**
      * Empfängt den Befehl der gedrückten Dezimaltrennzeichentaste, im Englischen üblicherweise "."
      * Fügt beim ersten Mal Drücken dem aktuellen Bildschirminhalt das Trennzeichen auf der rechten
@@ -117,6 +122,12 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      */
     public void pressEqualsKey() {
+
+        if(latestOperation.equals("/") && Double.parseDouble(screen) == 0.0) {
+            screen = "Error";
+            return;
+        }
+
         var result = switch(latestOperation) {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
