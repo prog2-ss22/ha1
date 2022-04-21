@@ -9,17 +9,21 @@ package htw.berlin.prog2.ha1;
 public class Calculator {
 
     private String screen = "0";
-
+// 2.2.22
     private double latestValue;
 
     private String latestOperation = "";
-
+    private String negSign = "";
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
     public String readScreen() {
+
+        if(screen.equals("Infinity")) screen = "Error";
+
         return screen;
     }
+
 
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
@@ -32,8 +36,7 @@ public class Calculator {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
         if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
-
-        screen = screen + digit;
+        screen = screen + digit ;
     }
 
     /**
@@ -62,7 +65,9 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        
     }
+
 
     /**
      * Empfängt den Wert einer gedrückten unären Operationstaste, also eine der drei Operationen
@@ -105,6 +110,7 @@ public class Calculator {
      */
     public void pressNegativeKey() {
         screen = screen.startsWith("-") ? screen.substring(1) : "-" + screen;
+       //
     }
 
     /**
@@ -118,6 +124,7 @@ public class Calculator {
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
+            case "p" -> Math.pow(latestValue,Double.parseDouble(screen));
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
@@ -127,5 +134,7 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
     }
+
 }

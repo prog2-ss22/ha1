@@ -13,14 +13,14 @@ class CalculatorTest {
     void testPositiveAddition() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(5);
         calc.pressDigitKey(0);
         calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(4);
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "40";
+        String expected = "90";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
@@ -31,15 +31,84 @@ class CalculatorTest {
     void testSquareRoot() {
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(2);
+        calc.pressDigitKey(9);
         calc.pressUnaryOperationKey("√");
 
-        String expected = "1.41421356";
+        String expected = "3.0";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
 
     //TODO hier weitere Tests erstellen
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositiveSubtraktion() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "10";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositivemios() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testdivisionbyzero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers")
+    void testPositivemiosi() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("p");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "125";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+
 }
 
