@@ -39,6 +39,17 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // First green test
+    @Test
+    @DisplayName("should display result after multiplying two numbers")
+    void calculatorIsAbleToMultiply() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(4);
+        calc.pressEqualsKey();
+        assertEquals("16", calc.readScreen());
+    }
 
     //TODO hier weitere Tests erstellen
 }
