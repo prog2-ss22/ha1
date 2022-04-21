@@ -62,6 +62,8 @@ public class Calculator {
     public void pressBinaryOperationKey(String operation)  {
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        pressEqualsKey();
+
     }
 
     /**
@@ -82,6 +84,10 @@ public class Calculator {
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
+
+
 
     }
 

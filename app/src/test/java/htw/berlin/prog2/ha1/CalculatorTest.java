@@ -81,11 +81,19 @@ class CalculatorTest {
     }
     @Test
     void Test(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(6);
+        calc.pressUnaryOperationKey("√");
 
 
+        String expected = "4";
+        String actual = calc.readScreen();
 
+        assertEquals(expected, actual);
 
-     }
-    //TODO hier weitere Tests erstellen
+    }
+
 }
 
