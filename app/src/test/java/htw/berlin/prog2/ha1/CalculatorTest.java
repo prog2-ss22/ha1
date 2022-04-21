@@ -74,5 +74,22 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display number after pressing percent Button")
+    void testPercent(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+        calc.pressEqualsKey();
+
+        String expected = "0.1";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
 
