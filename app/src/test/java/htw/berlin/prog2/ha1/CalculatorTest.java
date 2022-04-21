@@ -87,14 +87,16 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("test % key")
+    @DisplayName("test division by 0")
     void testBinaryOperation() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("%");
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
 
-        String expected = "0.02";
+        String expected = "No";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
