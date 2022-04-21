@@ -70,6 +70,11 @@ public class Calculator {
      * Beim Drücken der Taste wird direkt die Operation auf den aktuellen Zahlenwert angewendet und
      * der Bildschirminhalt mit dem Ergebnis aktualisiert.
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
+     *
+     * @author Quang Vien
+     *  da der UnaryOperationKey als latestValue bezeichnet wird, kann die Methode @see pressEqualskey
+     *  nicht funktionieren. Bug wurde mit Miroslav Keil gefunden und gefixt.
+     *
      */
     public void pressUnaryOperationKey(String operation) {
         //latestValue = Double.parseDouble(screen);
@@ -117,6 +122,17 @@ public class Calculator {
      * und das Ergebnis direkt angezeigt.
      *
      * Bug: Kann keine Lösung geben da der letzte Input √ ist.
+     *
+     * @author Quang Vien
+     * Wenn man 100 000 000 mit 100 000 000 multipliziert kommt als Ergebnis
+     * im Onlinecalculator 1+e16. Gib man diese Lösung als expected in das Programm
+     * kommt die Lösung jedoch in einer anderen Schreibweise (1.0E16)
+     *
+     * Ansatz: Dem Programm sagen, dass die Zahl anders angezeigt wird, da die Lösung richtig
+     * ist.
+     *
+     *
+     *
      */
     public void pressEqualsKey() {
         var result = switch(latestOperation) {
@@ -127,7 +143,10 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
+        //if(screen.contains("1.0E")) screen = screen.substring(1e+);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
+
     }
 }
