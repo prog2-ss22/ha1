@@ -70,5 +70,18 @@ class CalculatorTest {
         calc.pressDotKey();
         assertEquals("8.2", calc.readScreen());
     }
+    //Red Test
+    @Test
+    @DisplayName("should display result after dividing a number trough zero")
+    void testDividingByZero() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        String expected = "Error";
+        String actual = calc.readScreen();
+        assertEquals(expected, actual);
+    }
 }
 
