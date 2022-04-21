@@ -64,7 +64,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-/*
+
     @Test
     @DisplayName("Aufgabe 2.1")
     void errorInInversion(){
@@ -78,7 +78,7 @@ class CalculatorTest {
         assertEquals(expected, actual);
 
     }
-
+/*
     @Test
     @DisplayName("Aufgabe 2.2")
     void multipleDotsError(){
