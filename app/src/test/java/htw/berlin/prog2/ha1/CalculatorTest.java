@@ -97,7 +97,7 @@ class CalculatorTest {
 
 
 
-/*
+
 //2
 
     @Test
@@ -116,7 +116,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-*/
+
 
 
 }
