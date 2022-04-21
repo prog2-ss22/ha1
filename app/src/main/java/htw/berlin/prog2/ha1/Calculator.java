@@ -78,8 +78,8 @@ public class Calculator {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
-            case "ln" -> Math.log(Double.parseDouble(screen));
-            case "sin" -> Math.sin(latestValue);
+            //case "ln" -> Math.log(Double.parseDouble(screen));
+            //case "sin" -> Math.sin(latestValue);
             //case "π" -> Math.PI;
             default -> throw new IllegalArgumentException();
         };
@@ -131,6 +131,13 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+
+    public void pressPiKey() {
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "" ;
+
+        screen = screen + 3.141592653589793;
     }
 
 

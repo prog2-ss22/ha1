@@ -84,6 +84,8 @@ class CalculatorTest {
 
         calc.pressDigitKey(11);
         calc.pressUnaryOperationKey("ln");
+        //calc.pressBinaryOperationKey("+");
+        //calc.pressDigitKey(1);
         calc.pressEqualsKey();
 
         String expected = "2.3978952727983707";
@@ -107,15 +109,15 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    
+
     @Test
     @DisplayName("Should allow to calculate with pi")
     void testPi()  {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
-        calc.pressUnaryOperationKey("π");
+        calc.pressBinaryOperationKey("+");
+        calc.pressPiKey();
         calc.pressEqualsKey();
 
         String expected = "6.283185307179586";
@@ -123,6 +125,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+
 
 
 
