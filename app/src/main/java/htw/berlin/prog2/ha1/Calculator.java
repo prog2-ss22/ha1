@@ -16,6 +16,8 @@ public class Calculator {
 
     private boolean negativeNumber = false;
 
+    private boolean alreadyPressed = false;
+
     /**
      * @return den aktuellen Bildschirminhalt als String
      */
@@ -66,8 +68,14 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
+        if (alreadyPressed){
+           pressEqualsKey();
+
+        }
+
         latestValue = Double.parseDouble(screen);
         latestOperation = operation;
+        alreadyPressed = true;
     }
 
     /**
@@ -134,5 +142,6 @@ public class Calculator {
         screen = Double.toString(result);
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+
     }
 }
