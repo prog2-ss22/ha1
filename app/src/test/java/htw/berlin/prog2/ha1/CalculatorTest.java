@@ -40,6 +40,20 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    @Test
+    @DisplayName("should operate the percent function")
+    void ProzentFunction() {
+
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(0);
+        calc.pressUnaryOperationKey("%");
+
+        String expected = "0.4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
