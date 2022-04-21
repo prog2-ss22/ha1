@@ -70,6 +70,42 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // Teilaufgabe 2
+    @Test
+    @DisplayName("should display result after subtracting multiple positive numbers")
+    void testMultiSubtraction(){
+        Calculator calc = new Calculator();
 
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "-5";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
+
+    @Test
+    @DisplayName("should display ERROR after dividing with zero")
+    void testDividingZero(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "ERROR";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
+
 
