@@ -58,19 +58,15 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should operate the percent function + ")
-    void ProzentFunctionn() {
+    void ProzentFunctionTimes() {
 
-        var calc = new Calculator();
+        Calculator calc = new Calculator();
 
         calc.pressDigitKey(4);
         calc.pressDotKey();
         calc.pressDigitKey(0);
         calc.pressUnaryOperationKey("%%");
-        calc.pressDigitKey(4);
-        calc.pressDotKey();
-        calc.pressDigitKey(0);
-        calc.pressUnaryOperationKey("%%");
-        calc.pressEqualsKey();
+
 
         String expected = "0.16";
         String actual = calc.readScreen();
