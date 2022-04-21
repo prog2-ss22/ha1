@@ -82,11 +82,26 @@ class CalculatorTest {
     void testLnX()  {
         Calculator calc = new Calculator();
 
-        calc.pressUnaryOperationKey("ln");
         calc.pressDigitKey(11);
+        calc.pressUnaryOperationKey("ln");
         calc.pressEqualsKey();
 
-        String expected = "2.3978952728";
+        String expected = "2.3978952727983707";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should allow to calculate with sin")
+    void testSin()  {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressUnaryOperationKey("sin");
+        calc.pressEqualsKey();
+
+        String expected = "0.8414709848078965";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
