@@ -106,6 +106,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
     @Test
     @DisplayName("should display result after multiplying 3 digits.")
     void testDivision() {
