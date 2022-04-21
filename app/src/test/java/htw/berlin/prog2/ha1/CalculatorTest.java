@@ -60,8 +60,8 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    
-    //first red test
+
+    //first red test fixed
     @Test
     @DisplayName("should display error after dividing by zero")
     void testDivByZero() {
