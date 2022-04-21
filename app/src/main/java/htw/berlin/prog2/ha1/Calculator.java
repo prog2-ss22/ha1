@@ -23,7 +23,7 @@ public class Calculator {
 
     /**
      * Empfängt den Wert einer gedrückten Zifferntaste. Da man nur eine Taste auf einmal
-     * drücken kann muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
+     * drücken kann, muss der Wert positiv und einstellig sein und zwischen 0 und 9 liegen.
      * Führt in jedem Fall dazu, dass die gerade gedrückte Ziffer auf dem Bildschirm angezeigt
      * oder rechts an die zuvor gedrückte Ziffer angehängt angezeigt wird.
      * @param digit Die Ziffer, deren Taste gedrückt wurde
@@ -31,7 +31,7 @@ public class Calculator {
     public void pressDigitKey(int digit) {
         if(digit > 9 || digit < 0) throw new IllegalArgumentException();
 
-        if(screen.equals("0") || latestValue == Double.parseDouble(screen)) screen = "";
+        if(screen.equals("0") || latestValue == Double.parseDouble(screen) && !screen.equals("-0")) screen = "";
 
         screen = screen + digit;
     }
@@ -121,11 +121,25 @@ public class Calculator {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "/" -> divide();
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+
+        if(Double.parseDouble(screen) == 0.0 && latestOperation.equals("/"))
+            screen = "Error";
+        else
+            screen = Double.toString(result);
+
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+    public double divide() {
+        if(Double.parseDouble(screen) != 0.0) {
+            return latestValue / Double.parseDouble(screen);
+        }
+        else {
+            return 0.0;
+        }
     }
 }
