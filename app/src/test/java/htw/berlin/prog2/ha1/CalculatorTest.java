@@ -75,19 +75,22 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display Error after getting the square root of a negative number")
-    void testNegativeSquareRoot() {
+    @DisplayName("should display result after subtracting a negative number from a positive")
+    void testNegativeSubtraction() {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
         calc.pressDigitKey(2);
-        calc.pressUnaryOperationKey("√");
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
 
-        String expected = "Error";
+        String expected = "4";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
     }
+
     //TODO hier weitere Tests erstellen
 }
 

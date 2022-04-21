@@ -78,11 +78,11 @@ public class Calculator {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
             case "%" -> Double.parseDouble(screen) / 100;
             case "1/x" -> 1 / Double.parseDouble(screen);
+            //case "" -> screen = "Error";
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
-
     }
 
     /**
@@ -121,11 +121,39 @@ public class Calculator {
             case "+" -> latestValue + Double.parseDouble(screen);
             case "-" -> latestValue - Double.parseDouble(screen);
             case "x" -> latestValue * Double.parseDouble(screen);
-            case "/" -> latestValue / Double.parseDouble(screen);
+            case "/" -> divide();
+
+
             default -> throw new IllegalArgumentException();
         };
-        screen = Double.toString(result);
+
+    if (Double.parseDouble(screen)==0.0 && latestOperation.equals("/"))
+    {
+        screen="Error";
+    }
+    else {
+             screen = Double.toString(result);
+         }
+
         if(screen.endsWith(".0")) screen = screen.substring(0,screen.length()-2);
         if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
+    }
+
+    /**
+     * Wird aufgerufen, wenn in der pressEqualsKey Methode ein "/" erhalten wird. Prüft ann ob
+     *
+     * @return double Wert welcher 0 annimmt, wenn mit 0 dividiert werden soll und sonst den errechneten Wert übergibt
+     */
+    public double divide()
+    {
+
+        if (Double.parseDouble(screen)==0.0)
+        {
+           return 0.0;
+        }
+        else
+        {
+            return latestValue / Double.parseDouble(screen);
+        }
     }
 }
