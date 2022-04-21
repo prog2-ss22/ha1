@@ -1,6 +1,5 @@
 package htw.berlin.prog2.ha1;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -130,28 +129,9 @@ class CalculatorTest {
     calculator.pressDigitKey(3);
     calculator.pressBinaryOperationKey("-");
     calculator.pressDigitKey(5);
-    calculator.pressBinaryOperationKey("+");
+    calculator.pressEqualsKey();
     String expected = "1";
     String actual = calculator.readScreen();
     assertEquals(expected, actual);
-  }
-
-  @Test
-  @DisplayName("Should return Error if dividing by 0")
-  void testDivideByZero() throws Exception {
-    Calculator calculator = new Calculator();
-    IllegalArgumentException thrown = Assertions
-        .assertThrows(IllegalArgumentException.class, () -> {
-          calculator.pressDigitKey(4);
-          calculator.pressBinaryOperationKey("x");
-          calculator.pressDigitKey(3);
-          calculator.pressBinaryOperationKey("/");
-          calculator.pressDigitKey(0);
-          calculator.pressBinaryOperationKey("+");
-        }, "IllegalArgumentException was expected");
-    String expected = "Error";
-    String actual = calculator.readScreen();
-    assertEquals(expected, actual);
-    Assertions.assertEquals("Error", thrown.getMessage());
   }
 }
