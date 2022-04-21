@@ -61,7 +61,7 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display Error after divide by 0")
+    @DisplayName("should display result after divide two numbers & Error when divide by 0")
     void testDivideByZero() {
         Calculator calc = new Calculator();
 
@@ -70,6 +70,21 @@ class CalculatorTest {
         calc.pressBinaryOperationKey("/");
         calc.pressDigitKey(0);
         calc.pressEqualsKey();
+
+        String expected = "error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("should display error after try getting square roots of negativ Numbers")
+    void testSignChange(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
 
         String expected = "error";
         String actual = calc.readScreen();
