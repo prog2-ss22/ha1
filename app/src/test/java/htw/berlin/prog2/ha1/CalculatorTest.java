@@ -75,8 +75,8 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display 0 after deleting input")
-    void testDelete() {
+    @DisplayName("should display negative Number after pressing +/- and then the number")
+    void testDefaultNegative() {
         Calculator calc = new Calculator();
 
         calc.pressNegativeKey();
