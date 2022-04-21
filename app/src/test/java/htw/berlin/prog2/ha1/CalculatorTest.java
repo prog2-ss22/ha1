@@ -53,6 +53,44 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+    // roter test 1 Teilaufgabe 2
+    @Test
+    @DisplayName("should display result after subtracting two negative multi-digit numbers")
+    void testNegativeSubtract() {
+        Calculator calc = new Calculator();
+
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "-13";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    // roter test 2 Teilaufgabe 2
+    @Test
+    @DisplayName("should display result after dividing three positive multi-digit numbers")
+    void testPositiveTripleDivision() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(3);
+        calc.pressEqualsKey();
+
+        String expected = "3";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 
 }
 
