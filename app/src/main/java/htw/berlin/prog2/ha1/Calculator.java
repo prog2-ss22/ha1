@@ -45,9 +45,11 @@ public class Calculator {
      * im Ursprungszustand ist.
      */
     public void pressClearKey() {
+        if (screen.equalsIgnoreCase("0")){
+            latestOperation = "";
+            latestValue = 0.0;
+        }
         screen = "0";
-        latestOperation = "";
-        latestValue = 0.0;
     }
 
     /**
@@ -60,7 +62,14 @@ public class Calculator {
      * @param operation "+" für Addition, "-" für Substraktion, "x" für Multiplikation, "/" für Division
      */
     public void pressBinaryOperationKey(String operation)  {
-        latestValue = Double.parseDouble(screen);
+        if (!latestOperation.equals("")){
+            if(latestOperation.equalsIgnoreCase("/")&& screen.equalsIgnoreCase("0")){
+                screen = "Error";
+                throw new IllegalArgumentException("Error");
+            }
+            pressEqualsKey();
+        }
+        latestValue = Double.parseDouble(screen);;
         latestOperation = operation;
     }
 
