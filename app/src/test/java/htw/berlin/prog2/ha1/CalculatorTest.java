@@ -26,6 +26,12 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
+
+
+
+
+
+
     @Test
     @DisplayName("should display result after getting the square root of two")
     void testSquareRoot() {
@@ -39,6 +45,7 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
 
     @Test
     @DisplayName("should display result after adding two positive multi-digit numbers")
@@ -57,4 +64,24 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+
+    @Test
+    @DisplayName("should display result after adding two positive multi-digit numbers ")
+    void testnegativedividation() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(3);
+
+        String expected = "33";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+
+    }
 }
+
+
