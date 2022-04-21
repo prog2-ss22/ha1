@@ -76,18 +76,16 @@ class CalculatorTest {
     }
 
     @Test
-    @DisplayName("should display result after multiplicating one negative and one positive number")
-    void testNegativeMultiplication() {
+    @DisplayName("should display Error after dividing by Zero")
+    void testDivideByZero() {
         Calculator calc = new Calculator();
 
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("x");
         calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
         calc.pressEqualsKey();
 
-        String expected = "-60";
+        String expected = "Error";
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
