@@ -73,5 +73,21 @@ class CalculatorTest {
         String expected = "2";
         String actual = calc.readScreen();
     }
+
+    @Test
+    @DisplayName("should display 0 after deleting input")
+    void testDelete() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(10);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "0";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
