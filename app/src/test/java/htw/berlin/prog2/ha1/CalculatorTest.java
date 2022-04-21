@@ -59,5 +59,16 @@ class CalculatorTest {
 
         System.out.println("ergebnis" + "=" + calc.readScreen());
     }
+    //Red Test
+    @Test
+    @DisplayName("should display the point number correctly")
+    void calculatorCanDoNumbersWithDots() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(8);
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressDotKey();
+        assertEquals("8.2", calc.readScreen());
+    }
 }
 
