@@ -50,6 +50,19 @@ class CalculatorTest {
         calc.pressEqualsKey();
         assertEquals("16", calc.readScreen());
     }
+    // First red test
+    @Test
+    @DisplayName("should display result after taking root from a number")
+    void testTakingRoots() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("√");
+        calc.pressEqualsKey();
+
+        assertEquals("3", calc.readScreen());
+    }
 
     //TODO hier weitere Tests erstellen
 }
