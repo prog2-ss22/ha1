@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@DisplayName("Retro calculator")
+@DisplayName("My retro calculator")
 class CalculatorTest {
 
     @Test
@@ -40,6 +40,56 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    //TODO hier weitere Tests erstellen
+    //GREEN TEST
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers")
+    void testMultiply() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(7);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "35";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //RED TEST
+    @Test
+    @DisplayName("should display result after multiplying two positive numbers and pressing equals multiple times")
+    void testMultipleEquals() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(5);
+        calc.pressBinaryOperationKey("x");
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+        calc.pressEqualsKey();
+
+        String expected = "5000";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
+    //RED TEST
+    @Test
+    @DisplayName("Should display Error when dividing with 0")
+    void testDisplayError() {
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(2);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
