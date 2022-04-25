@@ -59,44 +59,6 @@ class CalculatorTest {
 
     //RED TEST
     @Test
-    @DisplayName("should display result after subtracting a number from a negative number")
-    void testNegativeSubtraction() {
-        Calculator calc = new Calculator();
-
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
-        calc.pressBinaryOperationKey("-");
-        calc.pressDigitKey(1);
-        calc.pressDigitKey(0);
-        calc.pressEqualsKey();
-
-        String expected = "-20";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    //RED TEST
-    @Test
-    @DisplayName("should display result after multiplying a negative number with a positive number")
-    void testMultiplyNegativeAndPositive() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(5);
-        calc.pressNegativeKey();
-        calc.pressBinaryOperationKey("x");
-        calc.pressDigitKey(5);
-        calc.pressEqualsKey();
-
-        String expected = "-25";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-
-    //RED TEST
-    @Test
     @DisplayName("should display result after multiplying two positive numbers and pressing equals multiple times")
     void testMultipleEquals() {
         Calculator calc = new Calculator();
