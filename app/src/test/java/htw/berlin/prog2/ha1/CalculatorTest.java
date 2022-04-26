@@ -65,13 +65,17 @@ class CalculatorTest {
     void testNegativeDividing(){
         Calculator calc = new Calculator();
 
-        calc.pressDigitKey(-4);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(4);
         calc.pressBinaryOperationKey("/");
-        calc.pressDigitKey(-2);
+        calc.pressBinaryOperationKey("-");
+        calc.pressDigitKey(2);
         calc.pressEqualsKey();
 
         String expected = "2";
         String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
     }
 
     @Test
@@ -88,4 +92,3 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 }
-
