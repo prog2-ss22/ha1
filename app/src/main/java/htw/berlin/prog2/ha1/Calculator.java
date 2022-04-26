@@ -115,9 +115,6 @@ public class Calculator {
 
 
 
-
-
-
     /**
      * Empfängt den Befehl der gedrückten "="-Taste.
      * Wurde zuvor keine Operationstaste gedrückt, passiert nichts.
