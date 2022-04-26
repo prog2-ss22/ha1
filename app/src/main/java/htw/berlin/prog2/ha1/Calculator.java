@@ -72,8 +72,8 @@ public class Calculator {
      * @param operation "√" für Quadratwurzel, "%" für Prozent, "1/x" für Inversion
      */
     public void pressUnaryOperationKey(String operation) {
-        latestOperation = operation; // Bugfix für Bruch und Prozentberechnung
-/*        latestValue = Double.parseDouble(screen);
+//        latestOperation = operation; // Bugfix für Bruch und Prozentberechnung
+        latestValue = Double.parseDouble(screen);
         latestOperation = operation;
         var result = switch(operation) {
             case "√" -> Math.sqrt(Double.parseDouble(screen));
@@ -82,7 +82,7 @@ public class Calculator {
             default -> throw new IllegalArgumentException();
         };
         screen = Double.toString(result);
-        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);*/
+        if(screen.contains(".") && screen.length() > 11) screen = screen.substring(0, 10);
 
     }
 
