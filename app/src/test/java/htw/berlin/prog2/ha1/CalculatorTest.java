@@ -114,6 +114,8 @@ class CalculatorTest {
         calc.pressEqualsKey();
 
 
+
+
         String expected = "-2";
         String actual = calc.readScreen();
 

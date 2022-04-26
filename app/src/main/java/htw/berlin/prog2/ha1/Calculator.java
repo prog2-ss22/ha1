@@ -20,9 +20,6 @@ public class Calculator {
      * @return den aktuellen Bildschirminhalt als String
      */
     public String readScreen() {
-        if(screen.startsWith("-")){
-            negativeDigit = true;
-        }
         return screen;
     }
 
@@ -111,7 +108,9 @@ public class Calculator {
     public void pressNegativeKey() {
 
         screen = screen.startsWith("-") ? screen.substring(1) : ("-" + screen);
-
+        if(screen.startsWith("-")){
+            negativeDigit = true;
+        }
     }
 
 
