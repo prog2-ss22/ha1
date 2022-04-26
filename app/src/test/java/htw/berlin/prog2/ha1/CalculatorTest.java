@@ -31,6 +31,8 @@ class CalculatorTest {
     void testSquareRoot() {
         Calculator calc = new Calculator();
 
+        //Git sync mac test
+
         calc.pressDigitKey(2);
         calc.pressUnaryOperationKey("√");
 
