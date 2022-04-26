@@ -31,6 +31,8 @@ class CalculatorTest {
     void testSquareRoot() {
         Calculator calc = new Calculator();
 
+        //Git sync mac test
+
         calc.pressDigitKey(2);
         calc.pressUnaryOperationKey("√");
 
@@ -38,6 +40,55 @@ class CalculatorTest {
         String actual = calc.readScreen();
 
         assertEquals(expected, actual);
+    }
+
+    @Test
+    @DisplayName("Should display result after getting dividing two numbers")
+    void testDivision(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(5);
+        calc.pressEqualsKey();
+
+        String expected = "4";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    @DisplayName("Should display String Error after trying square root of negative number")
+    void testNegativeSquareRoot(){
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressNegativeKey();
+        calc.pressUnaryOperationKey("√");
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
+    }
+
+    @Test
+    @DisplayName("Should display String Error after trying to divide a number by zero")
+    void testDivideByZero(){
+        Calculator calc = new Calculator();
+        calc.pressDigitKey(6);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected,actual);
+
     }
 
     //TODO hier weitere Tests erstellen
