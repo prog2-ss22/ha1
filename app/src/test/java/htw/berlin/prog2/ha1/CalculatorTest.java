@@ -33,7 +33,6 @@ class CalculatorTest {
 
         calc.pressDigitKey(2);
         calc.pressUnaryOperationKey("√");
-
         String expected = "1.41421356";
         String actual = calc.readScreen();
 
@@ -72,22 +71,6 @@ class CalculatorTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    @DisplayName("should display results after addition two positive numbers and repeating the operation by using '=' ")
-    void testDoubleEquals() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("+");
-        calc.pressDigitKey(1);      // 2+1
-        calc.pressEqualsKey();      // =3  |+1
-        calc.pressDoubleEqualsKey();      // =4  
-
-        String expected = "4";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
 
     @Test
     @DisplayName("should only clear the latest digit whithout deleting the whole sentence")
