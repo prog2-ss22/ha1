@@ -59,38 +59,6 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
-    /**
-     * Teilaufgabe 2
-     */
 
-    @Test
-    @DisplayName("should display result after taking power of a number ")
-    void testExponentiation() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(2);
-        calc.pressBinaryOperationKey("^");
-        calc.pressDigitKey(2);
-        calc.pressEqualsKey();
-
-        String expected = "4";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
-    @Test
-    @DisplayName("should display result after raising the base to yield a given number")
-    void testLog() {
-        Calculator calc = new Calculator();
-
-        calc.pressDigitKey(5);
-        calc.pressBinaryOperationKey("log");
-        calc.pressEqualsKey();
-
-        String expected = "0.69897000";
-        String actual = calc.readScreen();
-
-        assertEquals(expected, actual);
-    }
 }
 
