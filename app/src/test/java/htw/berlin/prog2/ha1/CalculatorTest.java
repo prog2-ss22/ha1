@@ -41,5 +41,59 @@ class CalculatorTest {
     }
 
     //TODO hier weitere Tests erstellen
+
+    /**
+     * Teilaufgabe 1
+     */
+
+    @Test
+    @DisplayName("should display correct number after pressing digit keys")
+    void testDigitInput() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(2);
+
+        String expected = "42";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    /**
+     * Teilaufgabe 2
+     */
+
+    @Test
+    @DisplayName("should display Error after deviding by zero")
+    void testDevidebyZero() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(8);
+        calc.pressBinaryOperationKey("/");
+        calc.pressDigitKey(0);
+        calc.pressEqualsKey();
+
+        String expected = "Error";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should display result after adding a positive and a decimal number")
+    void testDotKey() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressBinaryOperationKey("+");
+        calc.pressDotKey();
+        calc.pressDigitKey(2);
+        calc.pressEqualsKey();
+
+        String expected = "20.2";
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
 }
 
