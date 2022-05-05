@@ -109,7 +109,7 @@ class CalculatorTest {
 
     @Test
     @DisplayName("should display result after multiplying 3 digits.")
-    void testDivision() {
+    void testMultiplikation() {
         Calculator calc = new Calculator();
 
         calc.pressDigitKey(5);
@@ -124,6 +124,52 @@ class CalculatorTest {
 
         assertEquals(expected, actual);
     }
+//Neuer roter Test
+    @Test
+    @DisplayName("should only show 9 digits.")
+    void testScreen() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(1);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(5);
+
+        String expected = "123456789";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    @DisplayName("should only show 9 digits.")
+    void testScreen2() {
+        Calculator calc = new Calculator();
+
+        calc.pressDigitKey(9);
+        calc.pressDigitKey(8);
+        calc.pressDigitKey(7);
+        calc.pressDigitKey(6);
+        calc.pressDigitKey(5);
+        calc.pressDigitKey(4);
+        calc.pressDigitKey(3);
+        calc.pressDigitKey(2);
+        calc.pressDigitKey(0);
+        calc.pressDigitKey(1);
+
+        String expected = "987654320";
+
+        String actual = calc.readScreen();
+
+        assertEquals(expected, actual);
+    }
+
 
 
 }
